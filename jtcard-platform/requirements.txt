@@ -1,5 +1,0 @@
-Flask
-Werkzeug
-qrcode
-Pillow
-python-dotenv
