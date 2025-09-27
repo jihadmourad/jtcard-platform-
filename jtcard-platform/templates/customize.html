@@ -1,0 +1,1489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customize Your Card - JTCard</title>
+    <meta name="description" content="Create and customize your professional digital business card with our intuitive editor.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💼</text></svg>">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="assets/css/framework.css">
+    
+    <style>
+        body {
+            background: var(--gray-50);
+            font-family: var(--font-family-primary);
+        }
+        
+        /* Header */
+        .header {
+            background: white;
+            border-bottom: 1px solid var(--gray-200);
+            padding: var(--space-4) 0;
+            position: sticky;
+            top: 0;
+            z-index: var(--z-sticky);
+        }
+        
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 var(--space-6);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: var(--space-6);
+        }
+        
+        .brand-link {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            color: var(--primary-600);
+            text-decoration: none;
+            font-size: var(--text-xl);
+            font-weight: var(--font-bold);
+        }
+        
+        .page-title {
+            font-size: var(--text-2xl);
+            font-weight: var(--font-semibold);
+            color: var(--gray-900);
+            margin: 0;
+        }
+        
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: var(--space-4);
+        }
+        
+        /* Main Layout */
+        .main-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: var(--space-6);
+            display: grid;
+            grid-template-columns: 380px 1fr 400px;
+            gap: var(--space-6);
+            min-height: calc(100vh - 80px);
+        }
+        
+        /* Sidebar */
+        .sidebar {
+            background: white;
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--gray-200);
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+            max-height: calc(100vh - 120px);
+            overflow-y: auto;
+        }
+        
+        .sidebar-header {
+            padding: var(--space-6);
+            border-bottom: 1px solid var(--gray-200);
+            position: sticky;
+            top: 0;
+            background: white;
+            z-index: 1;
+        }
+        
+        .sidebar-title {
+            font-size: var(--text-lg);
+            font-weight: var(--font-semibold);
+            color: var(--gray-900);
+            margin: 0;
+        }
+        
+        .sidebar-content {
+            padding: var(--space-6);
+        }
+        
+        .form-section {
+            margin-bottom: var(--space-8);
+        }
+        
+        .form-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .section-title {
+            font-size: var(--text-base);
+            font-weight: var(--font-semibold);
+            color: var(--gray-900);
+            margin-bottom: var(--space-4);
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+        }
+        
+        .section-icon {
+            color: var(--primary-600);
+        }
+        
+        .form-group {
+            margin-bottom: var(--space-4);
+        }
+        
+        .form-label {
+            display: block;
+            font-size: var(--text-sm);
+            font-weight: var(--font-medium);
+            color: var(--gray-700);
+            margin-bottom: var(--space-2);
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: var(--space-3);
+            border: 1px solid var(--gray-300);
+            border-radius: var(--radius-lg);
+            font-size: var(--text-sm);
+            transition: all var(--transition-fast);
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary-500);
+            box-shadow: 0 0 0 3px rgb(59 130 246 / 0.1);
+        }
+        
+        .form-textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+        
+        /* Photo Upload */
+        .photo-upload {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-4);
+        }
+        
+        .photo-upload-group {
+            display: flex;
+            gap: var(--space-4);
+        }
+        
+        .upload-area {
+            flex: 1;
+            border: 2px dashed var(--gray-300);
+            border-radius: var(--radius-lg);
+            padding: var(--space-4);
+            text-align: center;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .upload-area:hover {
+            border-color: var(--primary-400);
+            background: var(--primary-50);
+        }
+        
+        .upload-area.has-image {
+            border-style: solid;
+            border-color: var(--primary-500);
+            padding: 0;
+        }
+        
+        .upload-preview {
+            width: 100%;
+            height: 100px;
+            object-fit: cover;
+            border-radius: var(--radius-md);
+        }
+        
+        .upload-placeholder {
+            color: var(--gray-500);
+            font-size: var(--text-sm);
+        }
+        
+        .upload-placeholder i {
+            font-size: var(--text-2xl);
+            margin-bottom: var(--space-2);
+            display: block;
+        }
+        
+        .upload-input {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+        }
+        
+        /* Social Media Section */
+        .social-section {
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius-lg);
+            padding: var(--space-4);
+            background: var(--gray-50);
+        }
+        
+        .social-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            margin-bottom: var(--space-3);
+            padding: var(--space-3);
+            background: white;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--gray-200);
+        }
+        
+        .social-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: var(--text-lg);
+            flex-shrink: 0;
+        }
+        
+        .social-facebook { background: #1877f2; }
+        .social-instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+        .social-linkedin { background: #0077b5; }
+        .social-twitter { background: #1da1f2; }
+        .social-whatsapp { background: #25d366; }
+        .social-telegram { background: #0088cc; }
+        .social-youtube { background: #ff0000; }
+        .social-tiktok { background: #000000; }
+        .social-snapchat { background: #fffc00; color: black; }
+        .social-pinterest { background: #bd081c; }
+        
+        .social-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-2);
+        }
+        
+        .social-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .social-name {
+            font-weight: var(--font-medium);
+            color: var(--gray-900);
+            font-size: var(--text-sm);
+        }
+        
+        .social-toggle {
+            position: relative;
+            width: 44px;
+            height: 24px;
+            background: var(--gray-300);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: background-color var(--transition-fast);
+        }
+        
+        .social-toggle.active {
+            background: var(--primary-600);
+        }
+        
+        .social-toggle::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            transition: transform var(--transition-fast);
+        }
+        
+        .social-toggle.active::after {
+            transform: translateX(20px);
+        }
+        
+        .social-input {
+            width: 100%;
+            padding: var(--space-2);
+            border: 1px solid var(--gray-300);
+            border-radius: var(--radius-md);
+            font-size: var(--text-sm);
+            transition: all var(--transition-fast);
+        }
+        
+        .social-input:focus {
+            outline: none;
+            border-color: var(--primary-500);
+            box-shadow: 0 0 0 2px rgb(59 130 246 / 0.1);
+        }
+        
+        .social-input:disabled {
+            background: var(--gray-100);
+            color: var(--gray-500);
+        }
+        
+        /* Template Selection */
+        .template-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-3);
+            margin-bottom: var(--space-4);
+        }
+        
+        .template-option {
+            aspect-ratio: 16/10;
+            border: 2px solid var(--gray-200);
+            border-radius: var(--radius-lg);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .template-option:hover {
+            border-color: var(--primary-400);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .template-option.active {
+            border-color: var(--primary-600);
+            box-shadow: 0 0 0 3px rgb(59 130 246 / 0.1);
+        }
+        
+        .template-preview {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: var(--space-3);
+            color: white;
+            font-size: var(--text-xs);
+            text-align: center;
+        }
+        
+        .template-modern { background: linear-gradient(135deg, var(--primary-500), var(--primary-700)); }
+        .template-classic { background: linear-gradient(135deg, var(--gray-700), var(--gray-900)); }
+        .template-creative { background: linear-gradient(135deg, #667eea, #764ba2); }
+        .template-minimal { background: linear-gradient(135deg, #f093fb, #f5576c); }
+        .template-corporate { background: linear-gradient(135deg, #4facfe, #00f2fe); }
+        .template-elegant { background: linear-gradient(135deg, #43e97b, #38f9d7); }
+        
+        /* Editor Area */
+        .editor-area {
+            background: white;
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--gray-200);
+            padding: var(--space-8);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 600px;
+        }
+        
+        .card-preview {
+            width: 100%;
+            max-width: 500px;
+            aspect-ratio: 16/10;
+            border-radius: var(--radius-2xl);
+            box-shadow: var(--shadow-xl);
+            position: relative;
+            overflow: hidden;
+            transition: all var(--transition-normal);
+        }
+        
+        .card-preview:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-2xl);
+        }
+        
+        .card-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, var(--primary-500), var(--primary-700));
+        }
+        
+        .card-cover {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 40%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0.3;
+        }
+        
+        .card-content {
+            position: relative;
+            z-index: 2;
+            padding: var(--space-6);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            color: white;
+        }
+        
+        .card-header {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-4);
+        }
+        
+        .card-profile {
+            width: 80px;
+            height: 80px;
+            border-radius: var(--radius-full);
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            object-fit: cover;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--text-2xl);
+            flex-shrink: 0;
+        }
+        
+        .card-info {
+            flex: 1;
+            padding-top: var(--space-2);
+        }
+        
+        .card-name {
+            font-size: var(--text-2xl);
+            font-weight: var(--font-bold);
+            margin-bottom: var(--space-1);
+            line-height: var(--leading-tight);
+        }
+        
+        .card-title {
+            font-size: var(--text-base);
+            opacity: 0.9;
+            margin-bottom: var(--space-1);
+        }
+        
+        .card-company {
+            font-size: var(--text-sm);
+            opacity: 0.8;
+        }
+        
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+        
+        .card-contact {
+            font-size: var(--text-sm);
+            opacity: 0.9;
+        }
+        
+        .card-contact div {
+            margin-bottom: var(--space-1);
+        }
+        
+        .card-social {
+            display: flex;
+            gap: var(--space-2);
+        }
+        
+        .card-social-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: var(--radius-full);
+            background: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--text-sm);
+            transition: all var(--transition-fast);
+        }
+        
+        .card-social-icon:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        /* Preview Panel */
+        .preview-panel {
+            background: white;
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--gray-200);
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+        }
+        
+        .preview-header {
+            padding: var(--space-6);
+            border-bottom: 1px solid var(--gray-200);
+        }
+        
+        .preview-title {
+            font-size: var(--text-lg);
+            font-weight: var(--font-semibold);
+            color: var(--gray-900);
+            margin: 0;
+        }
+        
+        .preview-content {
+            padding: var(--space-6);
+        }
+        
+        .preview-actions {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-3);
+            margin-bottom: var(--space-6);
+        }
+        
+        .qr-code {
+            width: 150px;
+            height: 150px;
+            background: var(--gray-100);
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto var(--space-4);
+            border: 1px solid var(--gray-200);
+            overflow: hidden;
+        }
+        
+        .qr-code img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        
+        .qr-placeholder {
+            color: var(--gray-400);
+            font-size: var(--text-sm);
+            text-align: center;
+        }
+        
+        .share-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-2);
+        }
+        
+        .share-btn {
+            padding: var(--space-2);
+            border: 1px solid var(--gray-300);
+            border-radius: var(--radius-lg);
+            background: white;
+            color: var(--gray-700);
+            font-size: var(--text-sm);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-1);
+        }
+        
+        .share-btn:hover {
+            background: var(--gray-50);
+            border-color: var(--gray-400);
+        }
+        
+        /* Loading States */
+        .loading {
+            opacity: 0.6;
+            pointer-events: none;
+            position: relative;
+        }
+        
+        .loading::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--gray-300);
+            border-top: 2px solid var(--primary-600);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+        
+        /* Success/Error Messages */
+        .message {
+            padding: var(--space-3) var(--space-4);
+            border-radius: var(--radius-lg);
+            margin-bottom: var(--space-4);
+            font-size: var(--text-sm);
+            font-weight: var(--font-medium);
+        }
+        
+        .message-success {
+            background: var(--success-50);
+            color: var(--success-700);
+            border: 1px solid var(--success-200);
+        }
+        
+        .message-error {
+            background: var(--error-50);
+            color: var(--error-700);
+            border: 1px solid var(--error-200);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .main-container {
+                grid-template-columns: 320px 1fr 350px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .main-container {
+                grid-template-columns: 1fr;
+                gap: var(--space-4);
+                padding: var(--space-4);
+            }
+            
+            .sidebar,
+            .preview-panel {
+                position: static;
+                max-height: none;
+            }
+            
+            .header-content {
+                padding: 0 var(--space-4);
+            }
+            
+            .page-title {
+                font-size: var(--text-lg);
+            }
+            
+            .template-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .photo-upload-group {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="header-left">
+                <a href="dashboard.html" class="brand-link">
+                    <i class="fas fa-id-card-alt"></i>
+                    JTCard
+                </a>
+                <h1 class="page-title">Card Editor</h1>
+            </div>
+            
+            <div class="header-actions">
+                <button class="btn btn-ghost" onclick="previewCard()">
+                    <i class="fas fa-eye" style="margin-right: var(--space-2);"></i>
+                    Preview
+                </button>
+                <button class="btn btn-primary" onclick="saveCard()">
+                    <i class="fas fa-save" style="margin-right: var(--space-2);"></i>
+                    Save Card
+                </button>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h2 class="sidebar-title">Customize</h2>
+            </div>
+            
+            <div class="sidebar-content">
+                <!-- Basic Information -->
+                <div class="form-section">
+                    <h3 class="section-title">
+                        <i class="fas fa-user section-icon"></i>
+                        Basic Information
+                    </h3>
+                    
+                    <div class="form-group">
+                        <label for="fullName" class="form-label">Full Name *</label>
+                        <input type="text" id="fullName" class="form-input" placeholder="John Doe" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="jobTitle" class="form-label">Job Title</label>
+                        <input type="text" id="jobTitle" class="form-input" placeholder="Software Engineer">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="company" class="form-label">Company</label>
+                        <input type="text" id="company" class="form-input" placeholder="Tech Corp">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="bio" class="form-label">Bio</label>
+                        <textarea id="bio" class="form-input form-textarea" placeholder="Brief description about yourself..."></textarea>
+                    </div>
+                </div>
+                
+                <!-- Contact Information -->
+                <div class="form-section">
+                    <h3 class="section-title">
+                        <i class="fas fa-address-book section-icon"></i>
+                        Contact Information
+                    </h3>
+                    
+                    <div class="form-group">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" id="email" class="form-input" placeholder="john@example.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone" class="form-label">Phone</label>
+                        <input type="tel" id="phone" class="form-input" placeholder="+1 (555) 123-4567">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="website" class="form-label">Website</label>
+                        <input type="url" id="website" class="form-input" placeholder="https://johndoe.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="address" class="form-label">Address</label>
+                        <input type="text" id="address" class="form-input" placeholder="123 Main St, City, State">
+                    </div>
+                </div>
+                
+                <!-- Photos -->
+                <div class="form-section">
+                    <h3 class="section-title">
+                        <i class="fas fa-camera section-icon"></i>
+                        Photos
+                    </h3>
+                    
+                    <div class="photo-upload">
+                        <div class="photo-upload-group">
+                            <div class="upload-area" id="profileUpload">
+                                <input type="file" class="upload-input" id="profileInput" accept="image/*">
+                                <div class="upload-placeholder">
+                                    <i class="fas fa-user-circle"></i>
+                                    Profile Photo
+                                </div>
+                            </div>
+                            
+                            <div class="upload-area" id="coverUpload">
+                                <input type="file" class="upload-input" id="coverInput" accept="image/*">
+                                <div class="upload-placeholder">
+                                    <i class="fas fa-image"></i>
+                                    Cover Photo
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Social Media -->
+                <div class="form-section">
+                    <h3 class="section-title">
+                        <i class="fas fa-share-alt section-icon"></i>
+                        Social Media
+                    </h3>
+                    
+                    <div class="social-section" id="socialSection">
+                        <!-- Social media items will be populated by JavaScript -->
+                    </div>
+                </div>
+                
+                <!-- Template Selection -->
+                <div class="form-section">
+                    <h3 class="section-title">
+                        <i class="fas fa-palette section-icon"></i>
+                        Template
+                    </h3>
+                    
+                    <div class="template-grid">
+                        <div class="template-option active" data-template="modern">
+                            <div class="template-preview template-modern">
+                                <strong>Modern</strong>
+                                <small>Clean & Professional</small>
+                            </div>
+                        </div>
+                        <div class="template-option" data-template="classic">
+                            <div class="template-preview template-classic">
+                                <strong>Classic</strong>
+                                <small>Traditional Style</small>
+                            </div>
+                        </div>
+                        <div class="template-option" data-template="creative">
+                            <div class="template-preview template-creative">
+                                <strong>Creative</strong>
+                                <small>Bold & Artistic</small>
+                            </div>
+                        </div>
+                        <div class="template-option" data-template="minimal">
+                            <div class="template-preview template-minimal">
+                                <strong>Minimal</strong>
+                                <small>Simple & Clean</small>
+                            </div>
+                        </div>
+                        <div class="template-option" data-template="corporate">
+                            <div class="template-preview template-corporate">
+                                <strong>Corporate</strong>
+                                <small>Business Focused</small>
+                            </div>
+                        </div>
+                        <div class="template-option" data-template="elegant">
+                            <div class="template-preview template-elegant">
+                                <strong>Elegant</strong>
+                                <small>Sophisticated</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Editor Area -->
+        <div class="editor-area">
+            <div id="messageContainer"></div>
+            
+            <div class="card-preview" id="cardPreview">
+                <div class="card-background" id="cardBackground"></div>
+                <div class="card-cover" id="cardCover" style="display: none;"></div>
+                
+                <div class="card-content">
+                    <div class="card-header">
+                        <div class="card-profile" id="cardProfile">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="card-info">
+                            <div class="card-name" id="cardName">Your Name</div>
+                            <div class="card-title" id="cardJobTitle">Your Job Title</div>
+                            <div class="card-company" id="cardCompany">Your Company</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-footer">
+                        <div class="card-contact" id="cardContact">
+                            <div id="cardEmail"></div>
+                            <div id="cardPhone"></div>
+                            <div id="cardWebsite"></div>
+                        </div>
+                        <div class="card-social" id="cardSocial">
+                            <!-- Social icons will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Preview Panel -->
+        <div class="preview-panel">
+            <div class="preview-header">
+                <h3 class="preview-title">Preview & Share</h3>
+            </div>
+            
+            <div class="preview-content">
+                <div class="preview-actions">
+                    <button class="btn btn-primary btn-full" onclick="saveCard()">
+                        <i class="fas fa-save" style="margin-right: var(--space-2);"></i>
+                        Save Changes
+                    </button>
+                    <button class="btn btn-ghost btn-full" onclick="previewCard()">
+                        <i class="fas fa-external-link-alt" style="margin-right: var(--space-2);"></i>
+                        Open Preview
+                    </button>
+                </div>
+                
+                <div class="qr-code" id="qrCode">
+                    <div class="qr-placeholder">
+                        QR Code will appear here after saving
+                    </div>
+                </div>
+                
+                <div class="share-options">
+                    <button class="share-btn" onclick="copyShareLink()">
+                        <i class="fas fa-link"></i>
+                        Copy Link
+                    </button>
+                    <button class="share-btn" onclick="downloadQR()">
+                        <i class="fas fa-download"></i>
+                        Download QR
+                    </button>
+                    <button class="share-btn" onclick="shareWhatsApp()">
+                        <i class="fab fa-whatsapp"></i>
+                        WhatsApp
+                    </button>
+                    <button class="share-btn" onclick="shareEmail()">
+                        <i class="fas fa-envelope"></i>
+                        Email
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/common.js"></script>
+    <script>
+        // Global variables
+        let currentCardId = null;
+        let currentCardData = {};
+        let socialPlatforms = [
+            { id: 'facebook', name: 'Facebook', icon: 'fab fa-facebook-f', class: 'social-facebook' },
+            { id: 'instagram', name: 'Instagram', icon: 'fab fa-instagram', class: 'social-instagram' },
+            { id: 'linkedin', name: 'LinkedIn', icon: 'fab fa-linkedin-in', class: 'social-linkedin' },
+            { id: 'twitter', name: 'Twitter', icon: 'fab fa-twitter', class: 'social-twitter' },
+            { id: 'whatsapp', name: 'WhatsApp', icon: 'fab fa-whatsapp', class: 'social-whatsapp' },
+            { id: 'telegram', name: 'Telegram', icon: 'fab fa-telegram-plane', class: 'social-telegram' },
+            { id: 'youtube', name: 'YouTube', icon: 'fab fa-youtube', class: 'social-youtube' },
+            { id: 'tiktok', name: 'TikTok', icon: 'fab fa-tiktok', class: 'social-tiktok' },
+            { id: 'snapchat', name: 'Snapchat', icon: 'fab fa-snapchat-ghost', class: 'social-snapchat' },
+            { id: 'pinterest', name: 'Pinterest', icon: 'fab fa-pinterest-p', class: 'social-pinterest' }
+        ];
+        
+        // Initialize the editor
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeEditor();
+            setupEventListeners();
+            loadCardData();
+        });
+        
+        function initializeEditor() {
+            // Initialize social media section
+            initializeSocialMedia();
+            
+            // Initialize template selection
+            initializeTemplates();
+            
+            // Initialize photo uploads
+            initializePhotoUploads();
+            
+            // Initialize form inputs
+            initializeFormInputs();
+        }
+        
+        function initializeSocialMedia() {
+            const socialSection = document.getElementById('socialSection');
+            socialSection.innerHTML = '';
+            
+            socialPlatforms.forEach(platform => {
+                const socialItem = document.createElement('div');
+                socialItem.className = 'social-item';
+                socialItem.innerHTML = `
+                    <div class="social-icon ${platform.class}">
+                        <i class="${platform.icon}"></i>
+                    </div>
+                    <div class="social-content">
+                        <div class="social-header">
+                            <span class="social-name">${platform.name}</span>
+                            <div class="social-toggle" data-platform="${platform.id}" onclick="toggleSocial('${platform.id}')">
+                            </div>
+                        </div>
+                        <input type="url" class="social-input" 
+                               placeholder="Enter your ${platform.name} URL" 
+                               data-platform="${platform.id}"
+                               disabled>
+                    </div>
+                `;
+                socialSection.appendChild(socialItem);
+            });
+        }
+        
+        function initializeTemplates() {
+            const templateOptions = document.querySelectorAll('.template-option');
+            templateOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    templateOptions.forEach(opt => opt.classList.remove('active'));
+                    this.classList.add('active');
+                    updateCardTemplate(this.dataset.template);
+                });
+            });
+        }
+        
+        function initializePhotoUploads() {
+            // Profile photo upload
+            const profileInput = document.getElementById('profileInput');
+            const profileUpload = document.getElementById('profileUpload');
+            
+            profileInput.addEventListener('change', function(e) {
+                handlePhotoUpload(e, 'profile');
+            });
+            
+            // Cover photo upload
+            const coverInput = document.getElementById('coverInput');
+            const coverUpload = document.getElementById('coverUpload');
+            
+            coverInput.addEventListener('change', function(e) {
+                handlePhotoUpload(e, 'cover');
+            });
+        }
+        
+        function initializeFormInputs() {
+            // Add event listeners to all form inputs
+            const inputs = document.querySelectorAll('.form-input');
+            inputs.forEach(input => {
+                input.addEventListener('input', updateCardPreview);
+            });
+            
+            // Add event listeners to social inputs
+            const socialInputs = document.querySelectorAll('.social-input');
+            socialInputs.forEach(input => {
+                input.addEventListener('input', updateCardPreview);
+            });
+        }
+        
+        function setupEventListeners() {
+            // Auto-save functionality
+            let saveTimeout;
+            document.addEventListener('input', function() {
+                clearTimeout(saveTimeout);
+                saveTimeout = setTimeout(autoSave, 2000); // Auto-save after 2 seconds of inactivity
+            });
+        }
+        
+        function loadCardData() {
+            // Get card ID from URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            currentCardId = urlParams.get('id');
+            
+            if (currentCardId) {
+                // Load existing card
+                loadExistingCard(currentCardId);
+            } else {
+                // Create new card
+                createNewCard();
+            }
+        }
+        
+        async function loadExistingCard(cardId) {
+            try {
+                showLoading(true);
+                const response = await fetch(`/api/cards/${cardId}`);
+                const result = await response.json();
+                
+                if (response.ok) {
+                    currentCardData = result.card;
+                    populateForm(currentCardData);
+                    updateCardPreview();
+                    updateQRCode(result.card.qrCode);
+                } else {
+                    showMessage('Error loading card: ' + result.error, 'error');
+                }
+            } catch (error) {
+                showMessage('Error loading card: ' + error.message, 'error');
+            } finally {
+                showLoading(false);
+            }
+        }
+        
+        async function createNewCard() {
+            try {
+                const response = await fetch('/api/cards', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        title: 'My Business Card',
+                        templateId: 'modern'
+                    })
+                });
+                
+                const result = await response.json();
+                
+                if (response.ok) {
+                    currentCardId = result.cardId;
+                    // Update URL without refreshing page
+                    window.history.replaceState({}, '', `?id=${currentCardId}`);
+                    showMessage('New card created successfully!', 'success');
+                } else {
+                    showMessage('Error creating card: ' + result.error, 'error');
+                }
+            } catch (error) {
+                showMessage('Error creating card: ' + error.message, 'error');
+            }
+        }
+        
+        function populateForm(cardData) {
+            // Populate basic information
+            if (cardData.data) {
+                Object.keys(cardData.data).forEach(key => {
+                    const input = document.getElementById(key);
+                    if (input) {
+                        input.value = cardData.data[key] || '';
+                    }
+                });
+            }
+            
+            // Populate social links
+            if (cardData.socialLinks) {
+                cardData.socialLinks.forEach(link => {
+                    const input = document.querySelector(`[data-platform="${link.platform}"]`);
+                    const toggle = document.querySelector(`.social-toggle[data-platform="${link.platform}"]`);
+                    
+                    if (input && toggle) {
+                        input.value = link.url;
+                        input.disabled = false;
+                        toggle.classList.add('active');
+                    }
+                });
+            }
+            
+            // Set template
+            if (cardData.templateId) {
+                const templateOption = document.querySelector(`[data-template="${cardData.templateId}"]`);
+                if (templateOption) {
+                    document.querySelectorAll('.template-option').forEach(opt => opt.classList.remove('active'));
+                    templateOption.classList.add('active');
+                    updateCardTemplate(cardData.templateId);
+                }
+            }
+            
+            // Load photos
+            if (cardData.files) {
+                if (cardData.files.profile) {
+                    loadPhotoPreview('profile', `/uploads/profiles/${cardData.files.profile}`);
+                }
+                if (cardData.files.cover) {
+                    loadPhotoPreview('cover', `/uploads/covers/${cardData.files.cover}`);
+                }
+            }
+        }
+        
+        function toggleSocial(platform) {
+            const toggle = document.querySelector(`.social-toggle[data-platform="${platform}"]`);
+            const input = document.querySelector(`.social-input[data-platform="${platform}"]`);
+            
+            if (toggle.classList.contains('active')) {
+                toggle.classList.remove('active');
+                input.disabled = true;
+                input.value = '';
+            } else {
+                toggle.classList.add('active');
+                input.disabled = false;
+                input.focus();
+            }
+            
+            updateCardPreview();
+        }
+        
+        function updateCardTemplate(templateId) {
+            const cardBackground = document.getElementById('cardBackground');
+            const templateClasses = {
+                'modern': 'linear-gradient(135deg, var(--primary-500), var(--primary-700))',
+                'classic': 'linear-gradient(135deg, var(--gray-700), var(--gray-900))',
+                'creative': 'linear-gradient(135deg, #667eea, #764ba2)',
+                'minimal': 'linear-gradient(135deg, #f093fb, #f5576c)',
+                'corporate': 'linear-gradient(135deg, #4facfe, #00f2fe)',
+                'elegant': 'linear-gradient(135deg, #43e97b, #38f9d7)'
+            };
+            
+            cardBackground.style.background = templateClasses[templateId] || templateClasses['modern'];
+        }
+        
+        function updateCardPreview() {
+            // Update card content
+            document.getElementById('cardName').textContent = document.getElementById('fullName').value || 'Your Name';
+            document.getElementById('cardJobTitle').textContent = document.getElementById('jobTitle').value || 'Your Job Title';
+            document.getElementById('cardCompany').textContent = document.getElementById('company').value || 'Your Company';
+            
+            // Update contact information
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const website = document.getElementById('website').value;
+            
+            document.getElementById('cardEmail').textContent = email;
+            document.getElementById('cardPhone').textContent = phone;
+            document.getElementById('cardWebsite').textContent = website;
+            
+            // Update social icons
+            updateSocialIcons();
+        }
+        
+        function updateSocialIcons() {
+            const cardSocial = document.getElementById('cardSocial');
+            cardSocial.innerHTML = '';
+            
+            socialPlatforms.forEach(platform => {
+                const input = document.querySelector(`.social-input[data-platform="${platform.id}"]`);
+                const toggle = document.querySelector(`.social-toggle[data-platform="${platform.id}"]`);
+                
+                if (toggle.classList.contains('active') && input.value.trim()) {
+                    const socialIcon = document.createElement('div');
+                    socialIcon.className = 'card-social-icon';
+                    socialIcon.innerHTML = `<i class="${platform.icon}"></i>`;
+                    socialIcon.onclick = () => window.open(input.value, '_blank');
+                    cardSocial.appendChild(socialIcon);
+                }
+            });
+        }
+        
+        async function handlePhotoUpload(event, type) {
+            const file = event.target.files[0];
+            if (!file) return;
+            
+            // Validate file type
+            if (!file.type.startsWith('image/')) {
+                showMessage('Please select a valid image file', 'error');
+                return;
+            }
+            
+            // Validate file size (max 5MB)
+            if (file.size > 5 * 1024 * 1024) {
+                showMessage('File size must be less than 5MB', 'error');
+                return;
+            }
+            
+            try {
+                showLoading(true);
+                
+                const formData = new FormData();
+                formData.append('file', file);
+                formData.append('type', type);
+                
+                const response = await fetch(`/api/cards/${currentCardId}/upload`, {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const result = await response.json();
+                
+                if (response.ok) {
+                    loadPhotoPreview(type, result.url);
+                    showMessage(`${type.charAt(0).toUpperCase() + type.slice(1)} photo uploaded successfully!`, 'success');
+                } else {
+                    showMessage('Error uploading photo: ' + result.error, 'error');
+                }
+            } catch (error) {
+                showMessage('Error uploading photo: ' + error.message, 'error');
+            } finally {
+                showLoading(false);
+            }
+        }
+        
+        function loadPhotoPreview(type, url) {
+            const uploadArea = document.getElementById(`${type}Upload`);
+            const placeholder = uploadArea.querySelector('.upload-placeholder');
+            
+            // Create or update preview image
+            let img = uploadArea.querySelector('.upload-preview');
+            if (!img) {
+                img = document.createElement('img');
+                img.className = 'upload-preview';
+                uploadArea.appendChild(img);
+            }
+            
+            img.src = url;
+            placeholder.style.display = 'none';
+            uploadArea.classList.add('has-image');
+            
+            // Update card preview
+            if (type === 'profile') {
+                const cardProfile = document.getElementById('cardProfile');
+                cardProfile.innerHTML = `<img src="${url}" style="width: 100%; height: 100%; object-fit: cover; border-radius: var(--radius-full);">`;
+            } else if (type === 'cover') {
+                const cardCover = document.getElementById('cardCover');
+                cardCover.style.backgroundImage = `url(${url})`;
+                cardCover.style.display = 'block';
+            }
+        }
+        
+        async function saveCard() {
+            if (!currentCardId) {
+                showMessage('No card to save', 'error');
+                return;
+            }
+            
+            try {
+                showLoading(true);
+                
+                // Collect form data
+                const formData = {
+                    title: document.getElementById('fullName').value || 'My Business Card',
+                    templateId: document.querySelector('.template-option.active').dataset.template,
+                    data: {
+                        fullName: document.getElementById('fullName').value,
+                        jobTitle: document.getElementById('jobTitle').value,
+                        company: document.getElementById('company').value,
+                        bio: document.getElementById('bio').value,
+                        email: document.getElementById('email').value,
+                        phone: document.getElementById('phone').value,
+                        website: document.getElementById('website').value,
+                        address: document.getElementById('address').value
+                    },
+                    socialLinks: []
+                };
+                
+                // Collect social links
+                socialPlatforms.forEach(platform => {
+                    const toggle = document.querySelector(`.social-toggle[data-platform="${platform.id}"]`);
+                    const input = document.querySelector(`.social-input[data-platform="${platform.id}"]`);
+                    
+                    if (toggle.classList.contains('active') && input.value.trim()) {
+                        formData.socialLinks.push({
+                            platform: platform.id,
+                            url: input.value.trim(),
+                            isVisible: true
+                        });
+                    }
+                });
+                
+                const response = await fetch(`/api/cards/${currentCardId}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+                
+                const result = await response.json();
+                
+                if (response.ok) {
+                    showMessage('Card saved successfully!', 'success');
+                    // Reload card to get updated QR code
+                    loadExistingCard(currentCardId);
+                } else {
+                    showMessage('Error saving card: ' + result.error, 'error');
+                }
+            } catch (error) {
+                showMessage('Error saving card: ' + error.message, 'error');
+            } finally {
+                showLoading(false);
+            }
+        }
+        
+        async function autoSave() {
+            if (currentCardId) {
+                await saveCard();
+            }
+        }
+        
+        function previewCard() {
+            if (currentCardId) {
+                window.open(`/card/${currentCardId}`, '_blank');
+            } else {
+                showMessage('Please save the card first', 'error');
+            }
+        }
+        
+        function updateQRCode(qrCodeData) {
+            const qrCode = document.getElementById('qrCode');
+            if (qrCodeData) {
+                qrCode.innerHTML = `<img src="${qrCodeData}" alt="QR Code">`;
+            }
+        }
+        
+        function copyShareLink() {
+            if (currentCardId) {
+                const shareUrl = `${window.location.origin}/card/${currentCardId}`;
+                navigator.clipboard.writeText(shareUrl).then(() => {
+                    showMessage('Share link copied to clipboard!', 'success');
+                });
+            }
+        }
+        
+        function downloadQR() {
+            const qrImg = document.querySelector('#qrCode img');
+            if (qrImg) {
+                const link = document.createElement('a');
+                link.download = 'business-card-qr.png';
+                link.href = qrImg.src;
+                link.click();
+            } else {
+                showMessage('Please save the card first to generate QR code', 'error');
+            }
+        }
+        
+        function shareWhatsApp() {
+            if (currentCardId) {
+                const shareUrl = `${window.location.origin}/card/${currentCardId}`;
+                const message = `Check out my digital business card: ${shareUrl}`;
+                window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, '_blank');
+            }
+        }
+        
+        function shareEmail() {
+            if (currentCardId) {
+                const shareUrl = `${window.location.origin}/card/${currentCardId}`;
+                const subject = 'My Digital Business Card';
+                const body = `Hi,\n\nI'd like to share my digital business card with you: ${shareUrl}\n\nBest regards`;
+                window.open(`mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`, '_blank');
+            }
+        }
+        
+        function showMessage(message, type) {
+            const messageContainer = document.getElementById('messageContainer');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message message-${type}`;
+            messageDiv.textContent = message;
+            
+            messageContainer.innerHTML = '';
+            messageContainer.appendChild(messageDiv);
+            
+            // Auto-hide after 5 seconds
+            setTimeout(() => {
+                messageDiv.remove();
+            }, 5000);
+        }
+        
+        function showLoading(show) {
+            const elements = ['.sidebar', '.editor-area', '.preview-panel'];
+            elements.forEach(selector => {
+                const element = document.querySelector(selector);
+                if (show) {
+                    element.classList.add('loading');
+                } else {
+                    element.classList.remove('loading');
+                }
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why Choose Us - JTCard</title>
+    <meta name="description" content="Discover why JTCard is the leading digital business card platform. Advanced features, professional templates, social media integration, and powerful analytics.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💼</text></svg>">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="assets/css/framework.css">
+    
+    <style>
+        body {
+            font-family: var(--font-family-primary);
+            line-height: var(--leading-normal);
+            color: var(--gray-900);
+        }
+        
+        /* Header */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--gray-200);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: var(--z-sticky);
+            transition: all var(--transition-fast);
+        }
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: var(--space-4) var(--space-6);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .brand-link {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            color: var(--primary-600);
+            text-decoration: none;
+            font-size: var(--text-xl);
+            font-weight: var(--font-bold);
+            transition: color var(--transition-fast);
+        }
+        
+        .brand-link:hover {
+            color: var(--primary-700);
+        }
+        
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: var(--space-8);
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .nav-link {
+            color: var(--gray-700);
+            text-decoration: none;
+            font-weight: var(--font-medium);
+            transition: color var(--transition-fast);
+            position: relative;
+        }
+        
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--primary-600);
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-600);
+            transition: width var(--transition-fast);
+        }
+        
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+        
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: var(--space-4);
+        }
+        
+        /* Hero Section */
+        .features-hero {
+            background: linear-gradient(135deg, var(--primary-600), var(--primary-800));
+            padding: calc(var(--space-20) + var(--space-16)) 0 var(--space-20);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .features-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 var(--space-6);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-title {
+            font-size: var(--text-5xl);
+            font-weight: var(--font-bold);
+            margin-bottom: var(--space-6);
+            line-height: var(--leading-tight);
+        }
+        
+        .hero-subtitle {
+            font-size: var(--text-xl);
+            opacity: 0.9;
+            line-height: var(--leading-relaxed);
+        }
+        
+        /* Features Grid Section */
+        .features-section {
+            padding: var(--space-20) 0;
+            background: white;
+        }
+        
+        .features-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--space-6);
+        }
+        
+        .section-title {
+            font-size: var(--text-4xl);
+            font-weight: var(--font-bold);
+            color: var(--gray-900);
+            margin-bottom: var(--space-4);
+            line-height: var(--leading-tight);
+            text-align: center;
+        }
+        
+        .section-subtitle {
+            font-size: var(--text-xl);
+            color: var(--gray-600);
+            margin-bottom: var(--space-12);
+            line-height: var(--leading-relaxed);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: var(--space-8);
+            margin-bottom: var(--space-16);
+        }
+        
+        .feature-card {
+            background: white;
+            padding: var(--space-8);
+            border-radius: var(--radius-2xl);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--gray-200);
+            transition: all var(--transition-fast);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--primary-600);
+            transform: scaleY(0);
+            transition: transform var(--transition-fast);
+        }
+        
+        .feature-card:hover::before {
+            transform: scaleY(1);
+        }
+        
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--primary-100);
+            color: var(--primary-600);
+            border-radius: var(--radius-xl);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--text-2xl);
+            margin-bottom: var(--space-4);
+        }
+        
+        .feature-title {
+            font-size: var(--text-xl);
+            font-weight: var(--font-semibold);
+            color: var(--gray-900);
+            margin-bottom: var(--space-3);
+        }
+        
+        .feature-description {
+            color: var(--gray-600);
+            line-height: var(--leading-relaxed);
+            margin-bottom: var(--space-4);
+        }
+        
+        .feature-benefits {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .feature-benefits li {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            color: var(--gray-600);
+            margin-bottom: var(--space-2);
+            font-size: var(--text-sm);
+        }
+        
+        .feature-benefits li::before {
+            content: '✓';
+            color: var(--success-600);
+            font-weight: var(--font-bold);
+        }
+        
+        /* Social Media Section */
+        .social-section {
+            padding: var(--space-20) 0;
+            background: var(--gray-50);
+        }
+        
+        .social-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--space-6);
+            text-align: center;
+        }
+        
+        .social-preview {
+            background: white;
+            padding: var(--space-12);
+            border-radius: var(--radius-2xl);
+            box-shadow: var(--shadow-lg);
+            margin: var(--space-12) 0;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .social-icons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+            gap: var(--space-4);
+            margin-top: var(--space-8);
+        }
+        
+        .social-icon-demo {
+            width: 60px;
+            height: 60px;
+            border-radius: var(--radius-full);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: var(--text-xl);
+            margin: 0 auto;
+            transition: all var(--transition-fast);
+            cursor: pointer;
+        }
+        
+        .social-icon-demo:hover {
+            transform: translateY(-2px) scale(1.1);
+        }
+        
+        .social-facebook { background: #1877F2; }
+        .social-instagram { background: linear-gradient(45deg, #F56040, #E1306C, #C13584, #833AB4); }
+        .social-whatsapp { background: #25D366; }
+        .social-telegram { background: #0088CC; }
+        .social-linkedin { background: #0A66C2; }
+        .social-twitter { background: #1DA1F2; }
+        .social-youtube { background: #FF0000; }
+        .social-tiktok { background: #000000; }
+        .social-snapchat { background: #FFFC00; color: #000; }
+        .social-pinterest { background: #BD081C; }
+        .social-github { background: #333333; }
+        .social-website { background: var(--primary-600); }
+        
+        .social-label {
+            font-size: var(--text-xs);
+            color: var(--gray-600);
+            margin-top: var(--space-2);
+            font-weight: var(--font-medium);
+        }
+        
+        /* Comparison Section */
+        .comparison-section {
+            padding: var(--space-20) 0;
+            background: white;
+        }
+        
+        .comparison-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--space-6);
+        }
+        
+        .comparison-table {
+            background: white;
+            border-radius: var(--radius-2xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--gray-200);
+        }
+        
+        .comparison-header {
+            background: var(--primary-600);
+            color: white;
+            padding: var(--space-6);
+            text-align: center;
+        }
+        
+        .comparison-header h3 {
+            font-size: var(--text-2xl);
+            font-weight: var(--font-bold);
+            margin: 0;
+        }
+        
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 0;
+        }
+        
+        .comparison-column {
+            padding: var(--space-6);
+            border-right: 1px solid var(--gray-200);
+        }
+        
+        .comparison-column:last-child {
+            border-right: none;
+        }
+        
+        .comparison-column h4 {
+            font-size: var(--text-lg);
+            font-weight: var(--font-semibold);
+            margin-bottom: var(--space-4);
+            text-align: center;
+            padding-bottom: var(--space-4);
+            border-bottom: 1px solid var(--gray-200);
+        }
+        
+        .comparison-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            padding: var(--space-3) 0;
+            border-bottom: 1px solid var(--gray-100);
+        }
+        
+        .comparison-item:last-child {
+            border-bottom: none;
+        }
+        
+        .check-icon {
+            color: var(--success-600);
+            font-size: var(--text-lg);
+        }
+        
+        .cross-icon {
+            color: var(--error-600);
+            font-size: var(--text-lg);
+        }
+        
+        /* Analytics Section */
+        .analytics-section {
+            padding: var(--space-20) 0;
+            background: var(--gray-50);
+        }
+        
+        .analytics-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--space-6);
+        }
+        
+        .analytics-demo {
+            background: white;
+            padding: var(--space-8);
+            border-radius: var(--radius-2xl);
+            box-shadow: var(--shadow-lg);
+            margin-top: var(--space-12);
+        }
+        
+        .analytics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-6);
+            margin-bottom: var(--space-8);
+        }
+        
+        .analytics-metric {
+            text-align: center;
+            padding: var(--space-4);
+            background: var(--gray-50);
+            border-radius: var(--radius-xl);
+        }
+        
+        .metric-value {
+            font-size: var(--text-3xl);
+            font-weight: var(--font-bold);
+            color: var(--primary-600);
+            margin-bottom: var(--space-2);
+        }
+        
+        .metric-label {
+            color: var(--gray-600);
+            font-weight: var(--font-medium);
+            font-size: var(--text-sm);
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--gray-900) 0%, var(--gray-800) 100%);
+            color: white;
+            padding: var(--space-20) 0;
+            text-align: center;
+        }
+        
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 var(--space-6);
+        }
+        
+        .cta-title {
+            font-size: var(--text-4xl);
+            font-weight: var(--font-bold);
+            margin-bottom: var(--space-4);
+            line-height: var(--leading-tight);
+        }
+        
+        .cta-subtitle {
+            font-size: var(--text-xl);
+            opacity: 0.9;
+            margin-bottom: var(--space-8);
+            line-height: var(--leading-relaxed);
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: var(--space-4);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .cta-button {
+            background: var(--primary-600);
+            color: white;
+            padding: var(--space-4) var(--space-8);
+            border-radius: var(--radius-xl);
+            text-decoration: none;
+            font-weight: var(--font-semibold);
+            font-size: var(--text-lg);
+            transition: all var(--transition-fast);
+            display: inline-block;
+        }
+        
+        .cta-button:hover {
+            background: var(--primary-700);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-xl);
+        }
+        
+        .cta-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: var(--space-4) var(--space-8);
+            border-radius: var(--radius-xl);
+            text-decoration: none;
+            font-weight: var(--font-semibold);
+            font-size: var(--text-lg);
+            transition: all var(--transition-fast);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .cta-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--gray-900);
+            color: var(--gray-300);
+            padding: var(--space-12) 0 var(--space-8);
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--space-6);
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-8);
+            margin-bottom: var(--space-8);
+        }
+        
+        .footer-section h3 {
+            color: white;
+            font-weight: var(--font-semibold);
+            margin-bottom: var(--space-4);
+        }
+        
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .footer-links li {
+            margin-bottom: var(--space-2);
+        }
+        
+        .footer-links a {
+            color: var(--gray-300);
+            text-decoration: none;
+            transition: color var(--transition-fast);
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary-400);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid var(--gray-700);
+            padding-top: var(--space-8);
+            text-align: center;
+            color: var(--gray-400);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+            
+            .hero-title {
+                font-size: var(--text-4xl);
+            }
+            
+            .section-title {
+                font-size: var(--text-3xl);
+            }
+            
+            .cta-title {
+                font-size: var(--text-3xl);
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .comparison-column {
+                border-right: none;
+                border-bottom: 1px solid var(--gray-200);
+            }
+            
+            .comparison-column:last-child {
+                border-bottom: none;
+            }
+            
+            .social-icons-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <a href="index.html" class="brand-link">
+                <i class="fas fa-id-card-alt"></i>
+                JTCard
+            </a>
+            
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="why-choose-us.html" class="nav-link active">Why Choose Us</a>
+                <a href="templates.html" class="nav-link">Templates</a>
+                <a href="pricing.html" class="nav-link">Pricing</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </nav>
+            
+            <div class="header-actions">
+                <a href="login.html" class="btn btn-ghost">Sign In</a>
+                <a href="signup.html" class="btn btn-primary">Get Started</a>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="features-hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Why Choose JTCard?</h1>
+            <p class="hero-subtitle">
+                Discover the powerful features and benefits that make JTCard the leading digital business card platform for professionals worldwide.
+            </p>
+        </div>
+    </section>
+    
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="features-content">
+            <h2 class="section-title">Comprehensive Features for Modern Professionals</h2>
+            <p class="section-subtitle">
+                Everything you need to create, share, and manage your professional digital presence effectively.
+            </p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-qrcode"></i>
+                    </div>
+                    <h3 class="feature-title">Smart QR Code Generation</h3>
+                    <p class="feature-description">
+                        Generate custom QR codes that instantly share your contact information. Perfect for networking events, business meetings, and professional gatherings.
+                    </p>
+                    <ul class="feature-benefits">
+                        <li>Instant contact sharing</li>
+                        <li>Custom QR code designs</li>
+                        <li>High-resolution downloads</li>
+                        <li>Analytics tracking</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3 class="feature-title">Professional Templates</h3>
+                    <p class="feature-description">
+                        Choose from dozens of professionally designed templates or create your own. Match your brand identity with customizable colors, fonts, and layouts.
+                    </p>
+                    <ul class="feature-benefits">
+                        <li>50+ professional templates</li>
+                        <li>Industry-specific designs</li>
+                        <li>Full customization options</li>
+                        <li>Brand consistency tools</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-share-alt"></i>
+                    </div>
+                    <h3 class="feature-title">Complete Social Media Integration</h3>
+                    <p class="feature-description">
+                        Add all your social media profiles with beautiful icons. Show or hide any platform based on your preferences and professional needs.
+                    </p>
+                    <ul class="feature-benefits">
+                        <li>12+ social platforms supported</li>
+                        <li>Show/hide toggle controls</li>
+                        <li>Custom icon styling</li>
+                        <li>Direct link integration</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 class="feature-title">Mobile-First Design</h3>
+                    <p class="feature-description">
+                        Your digital cards look perfect on any device. Responsive design ensures your professional image is maintained across all platforms.
+                    </p>
+                    <ul class="feature-benefits">
+                        <li>Responsive on all devices</li>
+                        <li>Touch-friendly interface</li>
+                        <li>Fast loading times</li>
+                        <li>Offline viewing capability</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="feature-title">Advanced Analytics</h3>
+                    <p class="feature-description">
+                        Track views, shares, and engagement with detailed analytics. Understand your networking effectiveness and optimize your approach.
+                    </p>
+                    <ul class="feature-benefits">
+                        <li>Real-time view tracking</li>
+                        <li>Engagement metrics</li>
+                        <li>Geographic insights</li>
+                        <li>Performance reports</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <h3 class="feature-title">Cloud-Based Management</h3>
+                    <p class="feature-description">
+                        Update your information once and it's instantly reflected everywhere. No need to reprint or redistribute cards when details change.
+                    </p>
+                    <ul class="feature-benefits">
+                        <li>Instant updates everywhere</li>
+                        <li>Secure cloud storage</li>
+                        <li>Automatic backups</li>
+                        <li>Multi-device sync</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Social Media Section -->
+    <section class="social-section">
+        <div class="social-content">
+            <h2 class="section-title">Complete Social Media Integration</h2>
+            <p class="section-subtitle">
+                Connect all your social platforms with beautiful icons. Show or hide any platform based on your professional needs.
+            </p>
+            
+            <div class="social-preview">
+                <h3 style="margin-bottom: var(--space-6); color: var(--gray-900);">Supported Platforms</h3>
+                <div class="social-icons-grid">
+                    <div>
+                        <div class="social-icon-demo social-facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </div>
+                        <div class="social-label">Facebook</div>
+                    </div>
+                    <div>
+                        <div class="social-icon-demo social-instagram">
+                            <i class="fab fa-instagram"></i>
+                        </div>
+                        <div class="social-label">Instagram</div>
+                    </div>
+                    <div>
+                        <div class="social-icon-demo social-whatsapp">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <div class="social-label">WhatsApp</div>
+                    </div>
+                    <div>
+                        <div class="social-icon-demo social-telegram">
+                            <i class="fab fa-telegram"></i>
+                        </div>
+                        <div class="social-label">Telegram</div>
+                    </div>
+                    <div>
+                        <div class="social-icon-demo social-linkedin">
+                            <i class="fab fa-linkedin-in"></i>
+                        </div>
+                        <div class="social-label">LinkedIn</div>
+                    </div>
+                    <div>
+                        <div class="social-icon-demo social-twitter">
+                            <i class="fab fa-twitter"></i>
+                        </div>
+                        <div class="social-label">Twitter</div>
+                    </div>
+                    <div>
+                        <div class="social-icon-demo social-youtube">
+                            <i class="fab fa-youtube"></i>
+                        </div>
+                        <div class="social-label">YouTube</div>
+                    </div>
+                    <div>
+                        <div class="social-icon-demo social-tiktok">
+                            <i class="fab fa-tiktok"></i>
+                        </div>
+                        <div class="social-label">TikTok</div>
+                    </div>
+                    <div>
+                        <div class="social-icon-demo social-snapchat">
+                            <i class="fab fa-snapchat-ghost"></i>
+                        </div>
+                        <div class="social-label">Snapchat</div>
+                    </div>
+                    <div>
+                        <div class="social-icon-demo social-pinterest">
+                            <i class="fab fa-pinterest"></i>
+                        </div>
+                        <div class="social-label">Pinterest</div>
+                    </div>
+                    <div>
+                        <div class="social-icon-demo social-github">
+                            <i class="fab fa-github"></i>
+                        </div>
+                        <div class="social-label">GitHub</div>
+                    </div>
+                    <div>
+                        <div class="social-icon-demo social-website">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <div class="social-label">Website</div>
+                    </div>
+                </div>
+                <p style="margin-top: var(--space-6); color: var(--gray-600); font-style: italic;">
+                    Each platform can be individually shown or hidden based on your preferences
+                </p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Comparison Section -->
+    <section class="comparison-section">
+        <div class="comparison-content">
+            <h2 class="section-title">JTCard vs Traditional Business Cards</h2>
+            <p class="section-subtitle">
+                See why digital business cards are the future of professional networking.
+            </p>
+            
+            <div class="comparison-table">
+                <div class="comparison-header">
+                    <h3>Feature Comparison</h3>
+                </div>
+                <div class="comparison-grid">
+                    <div class="comparison-column">
+                        <h4>Features</h4>
+                        <div class="comparison-item">Contact Information</div>
+                        <div class="comparison-item">Social Media Links</div>
+                        <div class="comparison-item">QR Code Sharing</div>
+                        <div class="comparison-item">Real-time Updates</div>
+                        <div class="comparison-item">Analytics Tracking</div>
+                        <div class="comparison-item">Environmental Impact</div>
+                        <div class="comparison-item">Cost per Card</div>
+                        <div class="comparison-item">Storage Space</div>
+                        <div class="comparison-item">Customization</div>
+                        <div class="comparison-item">Professional Templates</div>
+                    </div>
+                    <div class="comparison-column">
+                        <h4 style="color: var(--primary-600);">JTCard Digital</h4>
+                        <div class="comparison-item"><i class="fas fa-check check-icon"></i> Complete Profile</div>
+                        <div class="comparison-item"><i class="fas fa-check check-icon"></i> 12+ Platforms</div>
+                        <div class="comparison-item"><i class="fas fa-check check-icon"></i> Instant Sharing</div>
+                        <div class="comparison-item"><i class="fas fa-check check-icon"></i> Automatic Updates</div>
+                        <div class="comparison-item"><i class="fas fa-check check-icon"></i> Detailed Insights</div>
+                        <div class="comparison-item"><i class="fas fa-check check-icon"></i> Zero Waste</div>
+                        <div class="comparison-item"><i class="fas fa-check check-icon"></i> $0.10 per share</div>
+                        <div class="comparison-item"><i class="fas fa-check check-icon"></i> Cloud Storage</div>
+                        <div class="comparison-item"><i class="fas fa-check check-icon"></i> Unlimited Options</div>
+                        <div class="comparison-item"><i class="fas fa-check check-icon"></i> 50+ Templates</div>
+                    </div>
+                    <div class="comparison-column">
+                        <h4>Traditional Paper</h4>
+                        <div class="comparison-item"><i class="fas fa-check check-icon"></i> Basic Info Only</div>
+                        <div class="comparison-item"><i class="fas fa-times cross-icon"></i> Not Possible</div>
+                        <div class="comparison-item"><i class="fas fa-times cross-icon"></i> Manual Entry</div>
+                        <div class="comparison-item"><i class="fas fa-times cross-icon"></i> Reprint Required</div>
+                        <div class="comparison-item"><i class="fas fa-times cross-icon"></i> No Tracking</div>
+                        <div class="comparison-item"><i class="fas fa-times cross-icon"></i> Paper Waste</div>
+                        <div class="comparison-item"><i class="fas fa-times cross-icon"></i> $0.50+ per card</div>
+                        <div class="comparison-item"><i class="fas fa-times cross-icon"></i> Physical Storage</div>
+                        <div class="comparison-item"><i class="fas fa-times cross-icon"></i> Limited Design</div>
+                        <div class="comparison-item"><i class="fas fa-times cross-icon"></i> Basic Templates</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Analytics Section -->
+    <section class="analytics-section">
+        <div class="analytics-content">
+            <h2 class="section-title">Powerful Analytics & Insights</h2>
+            <p class="section-subtitle">
+                Track your networking effectiveness with comprehensive analytics and detailed performance metrics.
+            </p>
+            
+            <div class="analytics-demo">
+                <div class="analytics-grid">
+                    <div class="analytics-metric">
+                        <div class="metric-value">1,247</div>
+                        <div class="metric-label">Total Views</div>
+                    </div>
+                    <div class="analytics-metric">
+                        <div class="metric-value">89</div>
+                        <div class="metric-label">Contacts Saved</div>
+                    </div>
+                    <div class="analytics-metric">
+                        <div class="metric-value">156</div>
+                        <div class="metric-label">Social Clicks</div>
+                    </div>
+                    <div class="analytics-metric">
+                        <div class="metric-value">23</div>
+                        <div class="metric-label">Countries</div>
+                    </div>
+                </div>
+                <p style="text-align: center; color: var(--gray-600); margin: 0;">
+                    <i class="fas fa-chart-line" style="margin-right: var(--space-2);"></i>
+                    Real-time analytics help you understand your networking impact
+                </p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2 class="cta-title">Ready to Transform Your Networking?</h2>
+            <p class="cta-subtitle">
+                Join thousands of professionals who have already made the switch to digital business cards.
+            </p>
+            <div class="cta-buttons">
+                <a href="signup.html" class="cta-button">
+                    Start Your Free Trial
+                </a>
+                <a href="templates.html" class="cta-secondary">
+                    View Templates
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3>JTCard</h3>
+                    <p>Professional digital business cards for modern networking. Create, share, and manage your professional presence with ease.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Product</h3>
+                    <ul class="footer-links">
+                        <li><a href="templates.html">Templates</a></li>
+                        <li><a href="pricing.html">Pricing</a></li>
+                        <li><a href="why-choose-us.html">Features</a></li>
+                        <li><a href="dashboard.html">Dashboard</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Company</h3>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="#terms">Terms of Service</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul class="footer-links">
+                        <li><a href="contact.html">Help Center</a></li>
+                        <li><a href="contact.html">Contact Support</a></li>
+                        <li><a href="#documentation">Documentation</a></li>
+                        <li><a href="#status">System Status</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 JTCard. All rights reserved. Built with ❤️ for professional networking.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="assets/js/common.js"></script>
+    <script>
+        // Initialize features page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate feature cards on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            // Observe animated elements
+            const animatedElements = document.querySelectorAll('.feature-card, .analytics-metric');
+            animatedElements.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+                observer.observe(el);
+            });
+            
+            // Social icon hover effects
+            const socialIcons = document.querySelectorAll('.social-icon-demo');
+            socialIcons.forEach(icon => {
+                icon.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-2px) scale(1.1)';
+                });
+                
+                icon.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
