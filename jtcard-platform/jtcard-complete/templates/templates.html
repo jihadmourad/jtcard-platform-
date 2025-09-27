@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Templates - JTCard Platform</title>
-    <meta name="description" content="Choose from professional digital business card templates designed for every industry and style.">
+    <meta name="description" content="Choose from professional digital business card templates. Modern, classic, and creative designs for every professional.">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
@@ -31,11 +31,16 @@
                 <a href="/login" class="btn btn-outline">Sign In</a>
                 <a href="/signup" class="btn btn-primary">Get Started</a>
             </div>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
     </nav>
 
-    <!-- Page Header -->
-    <section class="page-header">
+    <!-- Templates Header -->
+    <section class="templates-header">
         <div class="container">
             <h1>Professional Templates</h1>
             <p>Choose from our collection of beautifully designed digital business card templates</p>
@@ -45,38 +50,44 @@
     <!-- Template Filters -->
     <section class="template-filters">
         <div class="container">
-            <div class="filter-tabs">
-                <button class="filter-tab active" data-filter="all">All Templates</button>
-                <button class="filter-tab" data-filter="modern">Modern</button>
-                <button class="filter-tab" data-filter="classic">Classic</button>
-                <button class="filter-tab" data-filter="minimal">Minimal</button>
-                <button class="filter-tab" data-filter="creative">Creative</button>
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All Templates</button>
+                <button class="filter-btn" data-filter="modern">Modern</button>
+                <button class="filter-btn" data-filter="classic">Classic</button>
+                <button class="filter-btn" data-filter="minimal">Minimal</button>
+                <button class="filter-btn" data-filter="creative">Creative</button>
             </div>
         </div>
     </section>
 
     <!-- Templates Grid -->
-    <section class="templates-section">
+    <section class="templates-grid">
         <div class="container">
-            <div class="templates-grid">
-                <!-- Modern Template 1 -->
-                <div class="template-card" data-category="modern">
+            <div class="templates-container">
+                
+                <!-- Modern Professional Template -->
+                <div class="template-item" data-category="modern">
                     <div class="template-preview">
-                        <div class="card-sample modern-style">
-                            <div class="sample-header">
-                                <div class="sample-avatar"></div>
-                                <div class="sample-info">
-                                    <h4>John Doe</h4>
+                        <div class="card-preview modern-card">
+                            <div class="card-header">
+                                <div class="card-avatar">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div class="card-info">
+                                    <h3>John Doe</h3>
                                     <p>Senior Developer</p>
                                 </div>
                             </div>
-                            <div class="sample-content">
-                                <div class="sample-contact">
+                            <div class="card-content">
+                                <div class="card-detail">
                                     <i class="fas fa-envelope"></i>
-                                    <i class="fas fa-phone"></i>
-                                    <i class="fas fa-globe"></i>
+                                    <span>john@company.com</span>
                                 </div>
-                                <div class="sample-social">
+                                <div class="card-detail">
+                                    <i class="fas fa-phone"></i>
+                                    <span>+1 (555) 123-4567</span>
+                                </div>
+                                <div class="card-social">
                                     <i class="fab fa-linkedin"></i>
                                     <i class="fab fa-twitter"></i>
                                     <i class="fab fa-instagram"></i>
@@ -94,27 +105,31 @@
                     </div>
                 </div>
 
-                <!-- Classic Template 1 -->
-                <div class="template-card" data-category="classic">
+                <!-- Classic Business Template -->
+                <div class="template-item" data-category="classic">
                     <div class="template-preview">
-                        <div class="card-sample classic-style">
-                            <div class="sample-header">
-                                <div class="sample-avatar"></div>
-                                <div class="sample-info">
-                                    <h4>Jane Smith</h4>
+                        <div class="card-preview classic-card">
+                            <div class="card-header">
+                                <div class="card-avatar">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div class="card-info">
+                                    <h3>Jane Smith</h3>
                                     <p>Marketing Director</p>
                                 </div>
                             </div>
-                            <div class="sample-content">
-                                <div class="sample-contact">
+                            <div class="card-content">
+                                <div class="card-detail">
                                     <i class="fas fa-envelope"></i>
-                                    <i class="fas fa-phone"></i>
-                                    <i class="fas fa-globe"></i>
+                                    <span>jane@company.com</span>
                                 </div>
-                                <div class="sample-social">
+                                <div class="card-detail">
+                                    <i class="fas fa-phone"></i>
+                                    <span>+1 (555) 987-6543</span>
+                                </div>
+                                <div class="card-social">
                                     <i class="fab fa-linkedin"></i>
                                     <i class="fab fa-twitter"></i>
-                                    <i class="fab fa-instagram"></i>
                                 </div>
                             </div>
                         </div>
@@ -129,27 +144,31 @@
                     </div>
                 </div>
 
-                <!-- Minimal Template 1 -->
-                <div class="template-card" data-category="minimal">
+                <!-- Minimal Clean Template -->
+                <div class="template-item" data-category="minimal">
                     <div class="template-preview">
-                        <div class="card-sample minimal-style">
-                            <div class="sample-header">
-                                <div class="sample-avatar"></div>
-                                <div class="sample-info">
-                                    <h4>Alex Johnson</h4>
+                        <div class="card-preview minimal-card">
+                            <div class="card-header">
+                                <div class="card-avatar">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div class="card-info">
+                                    <h3>Alex Johnson</h3>
                                     <p>UX Designer</p>
                                 </div>
                             </div>
-                            <div class="sample-content">
-                                <div class="sample-contact">
+                            <div class="card-content">
+                                <div class="card-detail">
                                     <i class="fas fa-envelope"></i>
-                                    <i class="fas fa-phone"></i>
-                                    <i class="fas fa-globe"></i>
+                                    <span>alex@design.com</span>
                                 </div>
-                                <div class="sample-social">
-                                    <i class="fab fa-linkedin"></i>
-                                    <i class="fab fa-twitter"></i>
+                                <div class="card-detail">
+                                    <i class="fas fa-phone"></i>
+                                    <span>+1 (555) 456-7890</span>
+                                </div>
+                                <div class="card-social">
                                     <i class="fab fa-dribbble"></i>
+                                    <i class="fab fa-behance"></i>
                                 </div>
                             </div>
                         </div>
@@ -164,27 +183,31 @@
                     </div>
                 </div>
 
-                <!-- Creative Template 1 -->
-                <div class="template-card" data-category="creative">
+                <!-- Creative Bold Template -->
+                <div class="template-item" data-category="creative">
                     <div class="template-preview">
-                        <div class="card-sample creative-style">
-                            <div class="sample-header">
-                                <div class="sample-avatar"></div>
-                                <div class="sample-info">
-                                    <h4>Maria Garcia</h4>
+                        <div class="card-preview creative-card">
+                            <div class="card-header">
+                                <div class="card-avatar">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div class="card-info">
+                                    <h3>Maria Garcia</h3>
                                     <p>Creative Director</p>
                                 </div>
                             </div>
-                            <div class="sample-content">
-                                <div class="sample-contact">
+                            <div class="card-content">
+                                <div class="card-detail">
                                     <i class="fas fa-envelope"></i>
-                                    <i class="fas fa-phone"></i>
-                                    <i class="fas fa-globe"></i>
+                                    <span>maria@creative.com</span>
                                 </div>
-                                <div class="sample-social">
-                                    <i class="fab fa-behance"></i>
-                                    <i class="fab fa-dribbble"></i>
+                                <div class="card-detail">
+                                    <i class="fas fa-phone"></i>
+                                    <span>+1 (555) 321-0987</span>
+                                </div>
+                                <div class="card-social">
                                     <i class="fab fa-instagram"></i>
+                                    <i class="fab fa-pinterest"></i>
                                 </div>
                             </div>
                         </div>
@@ -199,26 +222,30 @@
                     </div>
                 </div>
 
-                <!-- Modern Template 2 -->
-                <div class="template-card" data-category="modern">
+                <!-- Modern Gradient Template -->
+                <div class="template-item" data-category="modern">
                     <div class="template-preview">
-                        <div class="card-sample modern-style-2">
-                            <div class="sample-header">
-                                <div class="sample-avatar"></div>
-                                <div class="sample-info">
-                                    <h4>David Chen</h4>
+                        <div class="card-preview gradient-card">
+                            <div class="card-header">
+                                <div class="card-avatar">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div class="card-info">
+                                    <h3>David Chen</h3>
                                     <p>Product Manager</p>
                                 </div>
                             </div>
-                            <div class="sample-content">
-                                <div class="sample-contact">
+                            <div class="card-content">
+                                <div class="card-detail">
                                     <i class="fas fa-envelope"></i>
-                                    <i class="fas fa-phone"></i>
-                                    <i class="fas fa-globe"></i>
+                                    <span>david@product.com</span>
                                 </div>
-                                <div class="sample-social">
+                                <div class="card-detail">
+                                    <i class="fas fa-phone"></i>
+                                    <span>+1 (555) 654-3210</span>
+                                </div>
+                                <div class="card-social">
                                     <i class="fab fa-linkedin"></i>
-                                    <i class="fab fa-twitter"></i>
                                     <i class="fab fa-medium"></i>
                                 </div>
                             </div>
@@ -228,32 +255,36 @@
                         <h3>Modern Gradient</h3>
                         <p>Eye-catching gradient design for forward-thinking professionals</p>
                         <div class="template-actions">
-                            <a href="/customize?template=modern-gradient" class="btn btn-primary">Use Template</a>
-                            <button class="btn btn-outline" onclick="previewTemplate('modern-gradient')">Preview</button>
+                            <a href="/customize?template=gradient" class="btn btn-primary">Use Template</a>
+                            <button class="btn btn-outline" onclick="previewTemplate('gradient')">Preview</button>
                         </div>
                     </div>
                 </div>
 
-                <!-- Classic Template 2 -->
-                <div class="template-card" data-category="classic">
+                <!-- Classic Elegant Template -->
+                <div class="template-item" data-category="classic">
                     <div class="template-preview">
-                        <div class="card-sample classic-style-2">
-                            <div class="sample-header">
-                                <div class="sample-avatar"></div>
-                                <div class="sample-info">
-                                    <h4>Sarah Wilson</h4>
+                        <div class="card-preview elegant-card">
+                            <div class="card-header">
+                                <div class="card-avatar">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div class="card-info">
+                                    <h3>Sarah Wilson</h3>
                                     <p>Legal Advisor</p>
                                 </div>
                             </div>
-                            <div class="sample-content">
-                                <div class="sample-contact">
+                            <div class="card-content">
+                                <div class="card-detail">
                                     <i class="fas fa-envelope"></i>
-                                    <i class="fas fa-phone"></i>
-                                    <i class="fas fa-globe"></i>
+                                    <span>sarah@legal.com</span>
                                 </div>
-                                <div class="sample-social">
+                                <div class="card-detail">
+                                    <i class="fas fa-phone"></i>
+                                    <span>+1 (555) 789-0123</span>
+                                </div>
+                                <div class="card-social">
                                     <i class="fab fa-linkedin"></i>
-                                    <i class="fab fa-twitter"></i>
                                 </div>
                             </div>
                         </div>
@@ -262,50 +293,61 @@
                         <h3>Classic Elegant</h3>
                         <p>Sophisticated design perfect for legal and financial professionals</p>
                         <div class="template-actions">
-                            <a href="/customize?template=classic-elegant" class="btn btn-primary">Use Template</a>
-                            <button class="btn btn-outline" onclick="previewTemplate('classic-elegant')">Preview</button>
+                            <a href="/customize?template=elegant" class="btn btn-primary">Use Template</a>
+                            <button class="btn btn-outline" onclick="previewTemplate('elegant')">Preview</button>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
 
-    <!-- Features Section -->
+    <!-- Template Features -->
     <section class="template-features">
         <div class="container">
-            <div class="section-header">
-                <h2>All Templates Include</h2>
-                <p>Every template comes with these powerful features</p>
-            </div>
+            <h2>All Templates Include</h2>
+            <p>Every template comes with these powerful features</p>
             <div class="features-grid">
                 <div class="feature-item">
-                    <i class="fas fa-mobile-alt"></i>
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
                     <h3>Mobile Responsive</h3>
                     <p>Perfect display on all devices</p>
                 </div>
                 <div class="feature-item">
-                    <i class="fas fa-qrcode"></i>
+                    <div class="feature-icon">
+                        <i class="fas fa-qrcode"></i>
+                    </div>
                     <h3>QR Code Ready</h3>
                     <p>Instant sharing capabilities</p>
                 </div>
                 <div class="feature-item">
-                    <i class="fas fa-palette"></i>
+                    <div class="feature-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
                     <h3>Customizable</h3>
                     <p>Colors, fonts, and layout options</p>
                 </div>
                 <div class="feature-item">
-                    <i class="fas fa-share-alt"></i>
+                    <div class="feature-icon">
+                        <i class="fas fa-share-alt"></i>
+                    </div>
                     <h3>Social Integration</h3>
                     <p>Connect all your social profiles</p>
                 </div>
                 <div class="feature-item">
-                    <i class="fas fa-chart-line"></i>
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
                     <h3>Analytics Included</h3>
                     <p>Track views and engagement</p>
                 </div>
                 <div class="feature-item">
-                    <i class="fas fa-sync-alt"></i>
+                    <div class="feature-icon">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
                     <h3>Real-time Updates</h3>
                     <p>Changes reflect instantly</p>
                 </div>
@@ -366,52 +408,34 @@
 
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
     <script>
-        // Template filtering
-        document.querySelectorAll('.filter-tab').forEach(tab => {
-            tab.addEventListener('click', function() {
-                const filter = this.dataset.filter;
-                
-                // Update active tab
-                document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
-                this.classList.add('active');
-                
-                // Filter templates
-                document.querySelectorAll('.template-card').forEach(card => {
-                    if (filter === 'all' || card.dataset.category === filter) {
-                        card.style.display = 'block';
-                    } else {
-                        card.style.display = 'none';
-                    }
+        // Template filtering functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const templateItems = document.querySelectorAll('.template-item');
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const filter = this.getAttribute('data-filter');
+                    
+                    // Update active button
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Filter templates
+                    templateItems.forEach(item => {
+                        if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
                 });
             });
         });
 
-        // Template preview function
         function previewTemplate(templateId) {
-            // Create a modal or new window to show template preview
-            showNotification(`Preview for ${templateId} template`, 'info');
-        }
-
-        // Notification function
-        function showNotification(message, type = 'info') {
-            const notification = document.createElement('div');
-            notification.className = `notification notification-${type}`;
-            notification.innerHTML = `
-                <i class="fas fa-${type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
-                <span>${message}</span>
-                <button onclick="this.parentElement.remove()">
-                    <i class="fas fa-times"></i>
-                </button>
-            `;
-            
-            document.body.appendChild(notification);
-            
-            // Auto remove after 3 seconds
-            setTimeout(() => {
-                if (notification.parentElement) {
-                    notification.remove();
-                }
-            }, 3000);
+            // Open template preview in modal or new window
+            alert(`Preview for ${templateId} template - Feature coming soon!`);
         }
     </script>
 </body>
