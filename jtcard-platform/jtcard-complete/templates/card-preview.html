@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ card.full_name or 'Digital Business Card' }} - JTCard</title>
+    <meta name="description" content="Digital business card for {{ card.full_name or 'Professional' }}{% if card.job_title %} - {{ card.job_title }}{% endif %}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="{{ card.full_name or 'Digital Business Card' }}">
+    <meta property="og:description" content="{% if card.bio %}{{ card.bio[:150] }}{% else %}Professional digital business card{% endif %}">
+    <meta property="og:type" content="profile">
+    {% if card.profile_image %}
+    <meta property="og:image" content="{{ card.profile_image }}">
+    {% endif %}
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="{{ card.full_name or 'Digital Business Card' }}">
+    <meta name="twitter:description" content="{% if card.bio %}{{ card.bio[:150] }}{% else %}Professional digital business card{% endif %}">
+    {% if card.profile_image %}
+    <meta name="twitter:image" content="{{ card.profile_image }}">
+    {% endif %}
+</head>
+<body class="card-view-page">
+    <!-- Header -->
+    <header class="card-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="/">
+                        <i class="fas fa-id-card"></i>
+                        <span>JTCard</span>
+                    </a>
+                </div>
+                <div class="header-actions">
+                    <button class="btn btn-outline btn-sm" onclick="shareCard()">
+                        <i class="fas fa-share"></i>
+                        Share
+                    </button>
+                    <button class="btn btn-outline btn-sm" onclick="downloadContact()">
+                        <i class="fas fa-download"></i>
+                        Save Contact
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Business Card -->
+    <main class="card-main">
+        <div class="container">
+            <div class="business-card {{ card.template_id or 'modern' }}-template">
+                <!-- Cover Image -->
+                {% if card.cover_image %}
+                <div class="card-cover">
+                    <img src="{{ card.cover_image }}" alt="Cover Image">
+                </div>
+                {% endif %}
+                
+                <!-- Card Content -->
+                <div class="card-content">
+                    <!-- Profile Section -->
+                    <div class="card-profile">
+                        <div class="profile-image">
+                            {% if card.profile_image %}
+                                <img src="{{ card.profile_image }}" alt="{{ card.full_name or 'Profile' }}">
+                            {% else %}
+                                <i class="fas fa-user"></i>
+                            {% endif %}
+                        </div>
+                        <div class="profile-info">
+                            <h1 class="card-name">{{ card.full_name or 'Name Not Provided' }}</h1>
+                            {% if card.job_title %}
+                                <p class="card-title">{{ card.job_title }}</p>
+                            {% endif %}
+                            {% if card.company %}
+                                <p class="card-company">{{ card.company }}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    <!-- Bio Section -->
+                    {% if card.bio %}
+                    <div class="card-bio">
+                        <p>{{ card.bio }}</p>
+                    </div>
+                    {% endif %}
+                    
+                    <!-- Contact Information -->
+                    <div class="card-contact">
+                        {% if card.email %}
+                        <a href="mailto:{{ card.email }}" class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>{{ card.email }}</span>
+                        </a>
+                        {% endif %}
+                        
+                        {% if card.phone %}
+                        <a href="tel:{{ card.phone }}" class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>{{ card.phone }}</span>
+                        </a>
+                        {% endif %}
+                        
+                        {% if card.website %}
+                        <a href="{{ card.website }}" target="_blank" class="contact-item">
+                            <i class="fas fa-globe"></i>
+                            <span>{{ card.website.replace('https://', '').replace('http://', '') }}</span>
+                        </a>
+                        {% endif %}
+                    </div>
+                    
+                    <!-- Social Links -->
+                    {% if social_links %}
+                    <div class="card-social">
+                        <h3>Connect with me</h3>
+                        <div class="social-links">
+                            {% for link in social_links %}
+                            <a href="{{ link.url }}" target="_blank" class="social-link" title="{{ link.platform|title }}">
+                                <i class="fab fa-{{ link.platform }}"></i>
+                            </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endif %}
+                    
+                    <!-- QR Code Section -->
+                    <div class="card-qr">
+                        <h3>Share this card</h3>
+                        <div class="qr-code">
+                            <img src="{{ qr_code }}" alt="QR Code">
+                        </div>
+                        <p>Scan to save contact</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="card-footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>Powered by <a href="/">JTCard Platform</a> - Create your own digital business card</p>
+                <a href="/signup" class="btn btn-primary btn-sm">
+                    <i class="fas fa-plus"></i>
+                    Create Your Card
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Share Modal -->
+    <div id="shareModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Share this card</h3>
+                <button class="modal-close" onclick="closeShareModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="share-options">
+                    <div class="share-option" onclick="shareVia('copy')">
+                        <i class="fas fa-link"></i>
+                        <span>Copy Link</span>
+                    </div>
+                    <div class="share-option" onclick="shareVia('email')">
+                        <i class="fas fa-envelope"></i>
+                        <span>Email</span>
+                    </div>
+                    <div class="share-option" onclick="shareVia('whatsapp')">
+                        <i class="fab fa-whatsapp"></i>
+                        <span>WhatsApp</span>
+                    </div>
+                    <div class="share-option" onclick="shareVia('linkedin')">
+                        <i class="fab fa-linkedin"></i>
+                        <span>LinkedIn</span>
+                    </div>
+                    <div class="share-option" onclick="shareVia('twitter')">
+                        <i class="fab fa-twitter"></i>
+                        <span>Twitter</span>
+                    </div>
+                </div>
+                <div class="share-url">
+                    <input type="text" id="shareUrl" value="{{ request.url }}" readonly>
+                    <button onclick="copyUrl()" class="btn btn-outline btn-sm">
+                        <i class="fas fa-copy"></i>
+                        Copy
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script>
+        // Share functionality
+        function shareCard() {
+            if (navigator.share) {
+                navigator.share({
+                    title: '{{ card.full_name or "Digital Business Card" }}',
+                    text: '{% if card.bio %}{{ card.bio[:100] }}{% else %}Check out my digital business card{% endif %}',
+                    url: window.location.href
+                });
+            } else {
+                document.getElementById('shareModal').style.display = 'flex';
+            }
+        }
+
+        function closeShareModal() {
+            document.getElementById('shareModal').style.display = 'none';
+        }
+
+        function shareVia(platform) {
+            const url = encodeURIComponent(window.location.href);
+            const title = encodeURIComponent('{{ card.full_name or "Digital Business Card" }}');
+            const text = encodeURIComponent('{% if card.bio %}{{ card.bio[:100] }}{% else %}Check out my digital business card{% endif %}');
+            
+            let shareUrl = '';
+            
+            switch(platform) {
+                case 'copy':
+                    copyUrl();
+                    return;
+                case 'email':
+                    shareUrl = `mailto:?subject=${title}&body=${text}%20${url}`;
+                    break;
+                case 'whatsapp':
+                    shareUrl = `https://wa.me/?text=${text}%20${url}`;
+                    break;
+                case 'linkedin':
+                    shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${url}`;
+                    break;
+                case 'twitter':
+                    shareUrl = `https://twitter.com/intent/tweet?text=${text}&url=${url}`;
+                    break;
+            }
+            
+            if (shareUrl) {
+                window.open(shareUrl, '_blank');
+            }
+        }
+
+        function copyUrl() {
+            const urlInput = document.getElementById('shareUrl');
+            urlInput.select();
+            document.execCommand('copy');
+            showNotification('Link copied to clipboard!', 'success');
+        }
+
+        // Download contact functionality
+        function downloadContact() {
+            const vCard = generateVCard();
+            const blob = new Blob([vCard], { type: 'text/vcard' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = '{{ card.full_name or "contact" }}.vcf';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+            
+            showNotification('Contact downloaded successfully!', 'success');
+        }
+
+        function generateVCard() {
+            let vCard = 'BEGIN:VCARD\nVERSION:3.0\n';
+            
+            {% if card.full_name %}
+            vCard += 'FN:{{ card.full_name }}\n';
+            {% endif %}
+            
+            {% if card.job_title %}
+            vCard += 'TITLE:{{ card.job_title }}\n';
+            {% endif %}
+            
+            {% if card.company %}
+            vCard += 'ORG:{{ card.company }}\n';
+            {% endif %}
+            
+            {% if card.email %}
+            vCard += 'EMAIL:{{ card.email }}\n';
+            {% endif %}
+            
+            {% if card.phone %}
+            vCard += 'TEL:{{ card.phone }}\n';
+            {% endif %}
+            
+            {% if card.website %}
+            vCard += 'URL:{{ card.website }}\n';
+            {% endif %}
+            
+            {% if card.bio %}
+            vCard += 'NOTE:{{ card.bio }}\n';
+            {% endif %}
+            
+            vCard += 'END:VCARD';
+            
+            return vCard;
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('shareModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeShareModal();
+            }
+        });
+
+        // Notification function
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = `notification notification-${type}`;
+            notification.innerHTML = `
+                <i class="fas fa-${type === 'error' ? 'exclamation-circle' : 'check-circle'}"></i>
+                <span>${message}</span>
+                <button onclick="this.parentElement.remove()">
+                    <i class="fas fa-times"></i>
+                </button>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Auto remove after 3 seconds
+            setTimeout(() => {
+                if (notification.parentElement) {
+                    notification.remove();
+                }
+            }, 3000);
+        }
+
+        // Track card view (analytics)
+        fetch('/api/track-view', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                cardId: {{ card.id }},
+                timestamp: new Date().toISOString(),
+                userAgent: navigator.userAgent,
+                referrer: document.referrer
+            })
+        }).catch(() => {
+            // Silently fail if tracking doesn't work
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - JTCard Platform</title>
+    <meta name="description" content="Create your free JTCard Platform account and start building professional digital business cards.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+</head>
+<body class="auth-page">
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="/">
+                    <i class="fas fa-id-card"></i>
+                    <span>JTCard</span>
+                </a>
+            </div>
+            <div class="nav-buttons">
+                <a href="/login" class="btn btn-outline">Sign In</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Signup Form -->
+    <section class="auth-section">
+        <div class="auth-container">
+            <div class="auth-card">
+                <div class="auth-header">
+                    <h1>Create Your Account</h1>
+                    <p>Start building professional digital business cards</p>
+                </div>
+                
+                <form id="signupForm" class="auth-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">First Name</label>
+                            <input type="text" id="firstName" name="firstName" required>
+                            <i class="fas fa-user form-icon"></i>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name</label>
+                            <input type="text" id="lastName" name="lastName" required>
+                            <i class="fas fa-user form-icon"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required>
+                        <i class="fas fa-envelope form-icon"></i>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" required minlength="8">
+                        <i class="fas fa-lock form-icon"></i>
+                        <button type="button" class="password-toggle" onclick="togglePassword('password')">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                        <div class="password-strength">
+                            <div class="strength-bar">
+                                <div class="strength-fill"></div>
+                            </div>
+                            <span class="strength-text">Password strength</span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <input type="password" id="confirmPassword" name="confirmPassword" required>
+                        <i class="fas fa-lock form-icon"></i>
+                        <button type="button" class="password-toggle" onclick="togglePassword('confirmPassword')">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="form-options">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="terms" required>
+                            <span class="checkmark"></span>
+                            I agree to the <a href="/privacy-policy">Terms of Service</a> and <a href="/privacy-policy">Privacy Policy</a>
+                        </label>
+                    </div>
+                    
+                    <div class="form-options">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="newsletter">
+                            <span class="checkmark"></span>
+                            Send me updates and marketing emails
+                        </label>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-full">
+                        <i class="fas fa-user-plus"></i>
+                        Create Account
+                    </button>
+                </form>
+                
+                <div class="auth-divider">
+                    <span>or</span>
+                </div>
+                
+                <div class="social-login">
+                    <button class="btn btn-social btn-google">
+                        <i class="fab fa-google"></i>
+                        Continue with Google
+                    </button>
+                    <button class="btn btn-social btn-linkedin">
+                        <i class="fab fa-linkedin"></i>
+                        Continue with LinkedIn
+                    </button>
+                </div>
+                
+                <div class="auth-footer">
+                    <p>Already have an account? <a href="/login">Sign in here</a></p>
+                </div>
+            </div>
+            
+            <div class="auth-visual">
+                <div class="visual-content">
+                    <h2>Why choose JTCard?</h2>
+                    <p>Join thousands of professionals who've upgraded their networking</p>
+                    <div class="feature-highlights">
+                        <div class="highlight">
+                            <i class="fas fa-check"></i>
+                            <span>Free to start</span>
+                        </div>
+                        <div class="highlight">
+                            <i class="fas fa-check"></i>
+                            <span>Professional templates</span>
+                        </div>
+                        <div class="highlight">
+                            <i class="fas fa-check"></i>
+                            <span>QR code sharing</span>
+                        </div>
+                        <div class="highlight">
+                            <i class="fas fa-check"></i>
+                            <span>Real-time analytics</span>
+                        </div>
+                        <div class="highlight">
+                            <i class="fas fa-check"></i>
+                            <span>Mobile optimized</span>
+                        </div>
+                        <div class="highlight">
+                            <i class="fas fa-check"></i>
+                            <span>Social integration</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay" style="display: none;">
+        <div class="loading-spinner">
+            <i class="fas fa-spinner fa-spin"></i>
+            <p>Creating your account...</p>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script>
+        // Password strength checker
+        document.getElementById('password').addEventListener('input', function() {
+            const password = this.value;
+            const strengthBar = document.querySelector('.strength-fill');
+            const strengthText = document.querySelector('.strength-text');
+            
+            let strength = 0;
+            let text = 'Weak';
+            
+            if (password.length >= 8) strength++;
+            if (/[a-z]/.test(password)) strength++;
+            if (/[A-Z]/.test(password)) strength++;
+            if (/[0-9]/.test(password)) strength++;
+            if (/[^A-Za-z0-9]/.test(password)) strength++;
+            
+            const percentage = (strength / 5) * 100;
+            strengthBar.style.width = percentage + '%';
+            
+            if (strength <= 2) {
+                text = 'Weak';
+                strengthBar.style.backgroundColor = '#ff4757';
+            } else if (strength <= 3) {
+                text = 'Fair';
+                strengthBar.style.backgroundColor = '#ffa502';
+            } else if (strength <= 4) {
+                text = 'Good';
+                strengthBar.style.backgroundColor = '#2ed573';
+            } else {
+                text = 'Strong';
+                strengthBar.style.backgroundColor = '#1e90ff';
+            }
+            
+            strengthText.textContent = text;
+        });
+        
+        // Signup form handling
+        document.getElementById('signupForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const password = formData.get('password');
+            const confirmPassword = formData.get('confirmPassword');
+            
+            // Validate passwords match
+            if (password !== confirmPassword) {
+                showNotification('Passwords do not match', 'error');
+                return;
+            }
+            
+            const data = {
+                firstName: formData.get('firstName'),
+                lastName: formData.get('lastName'),
+                email: formData.get('email'),
+                password: password
+            };
+            
+            // Show loading
+            document.getElementById('loadingOverlay').style.display = 'flex';
+            
+            try {
+                const response = await fetch('/api/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+                
+                const result = await response.json();
+                
+                if (response.ok) {
+                    // Success - redirect to dashboard
+                    showNotification('Account created successfully!', 'success');
+                    setTimeout(() => {
+                        window.location.href = '/dashboard';
+                    }, 1500);
+                } else {
+                    // Error - show message
+                    showNotification(result.error || 'Registration failed', 'error');
+                }
+            } catch (error) {
+                showNotification('Network error. Please try again.', 'error');
+            } finally {
+                document.getElementById('loadingOverlay').style.display = 'none';
+            }
+        });
+        
+        // Password toggle function
+        function togglePassword(fieldId) {
+            const field = document.getElementById(fieldId);
+            const toggle = field.nextElementSibling.nextElementSibling;
+            const icon = toggle.querySelector('i');
+            
+            if (field.type === 'password') {
+                field.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                field.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        }
+        
+        // Notification function
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = `notification notification-${type}`;
+            notification.innerHTML = `
+                <i class="fas fa-${type === 'error' ? 'exclamation-circle' : 'check-circle'}"></i>
+                <span>${message}</span>
+                <button onclick="this.parentElement.remove()">
+                    <i class="fas fa-times"></i>
+                </button>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Auto remove after 5 seconds
+            setTimeout(() => {
+                if (notification.parentElement) {
+                    notification.remove();
+                }
+            }, 5000);
+        }
+    </script>
+</body>
+</html>

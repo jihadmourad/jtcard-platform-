@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - JTCard Platform</title>
+    <meta name="description" content="Manage your digital business cards and track engagement analytics.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+</head>
+<body class="dashboard-page">
+    <!-- Navigation -->
+    <nav class="navbar dashboard-nav">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="/">
+                    <i class="fas fa-id-card"></i>
+                    <span>JTCard</span>
+                </a>
+            </div>
+            <div class="nav-menu">
+                <a href="/dashboard" class="nav-link active">Dashboard</a>
+                <a href="/customize" class="nav-link">Create Card</a>
+                <a href="/templates" class="nav-link">Templates</a>
+            </div>
+            <div class="nav-user">
+                <div class="user-dropdown">
+                    <button class="user-button">
+                        <div class="user-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <span class="user-name">User</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="dropdown-menu">
+                        <a href="#" class="dropdown-item">
+                            <i class="fas fa-user"></i>
+                            Profile Settings
+                        </a>
+                        <a href="#" class="dropdown-item">
+                            <i class="fas fa-cog"></i>
+                            Account Settings
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item" onclick="logout()">
+                            <i class="fas fa-sign-out-alt"></i>
+                            Sign Out
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Dashboard Content -->
+    <main class="dashboard-main">
+        <!-- Sidebar -->
+        <aside class="dashboard-sidebar">
+            <div class="sidebar-menu">
+                <a href="/dashboard" class="menu-item active">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Overview</span>
+                </a>
+                <a href="/customize" class="menu-item">
+                    <i class="fas fa-plus"></i>
+                    <span>Create Card</span>
+                </a>
+                <a href="#" class="menu-item">
+                    <i class="fas fa-id-card"></i>
+                    <span>My Cards</span>
+                </a>
+                <a href="#" class="menu-item">
+                    <i class="fas fa-chart-bar"></i>
+                    <span>Analytics</span>
+                </a>
+                <a href="#" class="menu-item">
+                    <i class="fas fa-share-alt"></i>
+                    <span>Sharing</span>
+                </a>
+                <a href="#" class="menu-item">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="dashboard-content">
+            <!-- Header -->
+            <div class="dashboard-header">
+                <h1>Dashboard Overview</h1>
+                <p>Manage your digital business cards and track performance</p>
+                <div class="header-actions">
+                    <a href="/customize" class="btn btn-primary">
+                        <i class="fas fa-plus"></i>
+                        Create New Card
+                    </a>
+                </div>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-id-card"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 id="totalCards">0</h3>
+                        <p>Total Cards</p>
+                        <span class="stat-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            +2 this month
+                        </span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 id="totalViews">0</h3>
+                        <p>Total Views</p>
+                        <span class="stat-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            +15% this week
+                        </span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-mouse-pointer"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 id="totalClicks">0</h3>
+                        <p>Total Clicks</p>
+                        <span class="stat-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            +8% this week
+                        </span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-share-alt"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 id="totalShares">0</h3>
+                        <p>Total Shares</p>
+                        <span class="stat-change neutral">
+                            <i class="fas fa-minus"></i>
+                            No change
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cards Section -->
+            <div class="dashboard-section">
+                <div class="section-header">
+                    <h2>Your Business Cards</h2>
+                    <a href="/customize" class="btn btn-outline">
+                        <i class="fas fa-plus"></i>
+                        Add New
+                    </a>
+                </div>
+                <div id="cardsContainer" class="cards-grid">
+                    <!-- Cards will be loaded here -->
+                    <div class="empty-state">
+                        <div class="empty-icon">
+                            <i class="fas fa-id-card"></i>
+                        </div>
+                        <h3>No cards yet</h3>
+                        <p>Create your first digital business card to get started</p>
+                        <a href="/customize" class="btn btn-primary">
+                            <i class="fas fa-plus"></i>
+                            Create Your First Card
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="dashboard-section">
+                <div class="section-header">
+                    <h2>Recent Activity</h2>
+                    <a href="#" class="btn btn-outline">View All</a>
+                </div>
+                <div class="activity-list">
+                    <div class="activity-item">
+                        <div class="activity-icon">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <div class="activity-content">
+                            <p><strong>John Doe</strong> viewed your business card</p>
+                            <span class="activity-time">2 hours ago</span>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon">
+                            <i class="fas fa-share"></i>
+                        </div>
+                        <div class="activity-content">
+                            <p>Your card was shared via QR code</p>
+                            <span class="activity-time">5 hours ago</span>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon">
+                            <i class="fas fa-edit"></i>
+                        </div>
+                        <div class="activity-content">
+                            <p>You updated your business card</p>
+                            <span class="activity-time">1 day ago</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay" style="display: none;">
+        <div class="loading-spinner">
+            <i class="fas fa-spinner fa-spin"></i>
+            <p>Loading...</p>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script>
+        // Load dashboard data
+        document.addEventListener('DOMContentLoaded', function() {
+            loadDashboardData();
+        });
+
+        async function loadDashboardData() {
+            try {
+                // Show loading
+                document.getElementById('loadingOverlay').style.display = 'flex';
+                
+                // Load cards
+                const response = await fetch('/api/cards');
+                if (response.ok) {
+                    const data = await response.json();
+                    displayCards(data.cards);
+                    updateStats(data.cards);
+                } else if (response.status === 401) {
+                    // Not authenticated, redirect to login
+                    window.location.href = '/login';
+                } else {
+                    showNotification('Failed to load dashboard data', 'error');
+                }
+            } catch (error) {
+                showNotification('Network error. Please try again.', 'error');
+            } finally {
+                document.getElementById('loadingOverlay').style.display = 'none';
+            }
+        }
+
+        function displayCards(cards) {
+            const container = document.getElementById('cardsContainer');
+            
+            if (cards.length === 0) {
+                // Show empty state
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-icon">
+                            <i class="fas fa-id-card"></i>
+                        </div>
+                        <h3>No cards yet</h3>
+                        <p>Create your first digital business card to get started</p>
+                        <a href="/customize" class="btn btn-primary">
+                            <i class="fas fa-plus"></i>
+                            Create Your First Card
+                        </a>
+                    </div>
+                `;
+                return;
+            }
+
+            // Display cards
+            container.innerHTML = cards.map(card => `
+                <div class="card-item">
+                    <div class="card-preview">
+                        <div class="card-header">
+                            <div class="card-avatar">
+                                ${card.profileImage ? 
+                                    `<img src="${card.profileImage}" alt="Profile">` : 
+                                    '<i class="fas fa-user"></i>'
+                                }
+                            </div>
+                            <div class="card-info">
+                                <h3>${card.fullName || 'Unnamed Card'}</h3>
+                                <p>${card.jobTitle || 'No title'}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-actions">
+                        <a href="/card/${card.id}" class="btn btn-outline btn-sm" target="_blank">
+                            <i class="fas fa-eye"></i>
+                            View
+                        </a>
+                        <a href="/customize?id=${card.id}" class="btn btn-primary btn-sm">
+                            <i class="fas fa-edit"></i>
+                            Edit
+                        </a>
+                        <button class="btn btn-outline btn-sm" onclick="shareCard(${card.id})">
+                            <i class="fas fa-share"></i>
+                            Share
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function updateStats(cards) {
+            document.getElementById('totalCards').textContent = cards.length;
+            // For demo purposes, using random numbers for other stats
+            document.getElementById('totalViews').textContent = Math.floor(Math.random() * 1000) + 100;
+            document.getElementById('totalClicks').textContent = Math.floor(Math.random() * 500) + 50;
+            document.getElementById('totalShares').textContent = Math.floor(Math.random() * 100) + 10;
+        }
+
+        function shareCard(cardId) {
+            const url = `${window.location.origin}/card/${cardId}`;
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: 'My Digital Business Card',
+                    url: url
+                });
+            } else {
+                // Fallback - copy to clipboard
+                navigator.clipboard.writeText(url).then(() => {
+                    showNotification('Card URL copied to clipboard!', 'success');
+                });
+            }
+        }
+
+        async function logout() {
+            try {
+                const response = await fetch('/api/logout', {
+                    method: 'POST'
+                });
+                
+                if (response.ok) {
+                    window.location.href = '/';
+                }
+            } catch (error) {
+                window.location.href = '/';
+            }
+        }
+
+        // Notification function
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = `notification notification-${type}`;
+            notification.innerHTML = `
+                <i class="fas fa-${type === 'error' ? 'exclamation-circle' : 'check-circle'}"></i>
+                <span>${message}</span>
+                <button onclick="this.parentElement.remove()">
+                    <i class="fas fa-times"></i>
+                </button>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Auto remove after 5 seconds
+            setTimeout(() => {
+                if (notification.parentElement) {
+                    notification.remove();
+                }
+            }, 5000);
+        }
+
+        // User dropdown toggle
+        document.querySelector('.user-button').addEventListener('click', function() {
+            document.querySelector('.dropdown-menu').classList.toggle('show');
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.user-dropdown')) {
+                document.querySelector('.dropdown-menu').classList.remove('show');
+            }
+        });
+    </script>
+</body>
+</html>

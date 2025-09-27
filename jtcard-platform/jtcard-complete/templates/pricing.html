@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing - JTCard Platform</title>
+    <meta name="description" content="Choose the perfect plan for your digital business card needs. Free and premium options available.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="/">
+                    <i class="fas fa-id-card"></i>
+                    <span>JTCard</span>
+                </a>
+            </div>
+            <div class="nav-menu">
+                <a href="/" class="nav-link">Home</a>
+                <a href="/about" class="nav-link">About</a>
+                <a href="/why-choose-us" class="nav-link">Why Choose Us</a>
+                <a href="/templates" class="nav-link">Templates</a>
+                <a href="/pricing" class="nav-link active">Pricing</a>
+                <a href="/contact" class="nav-link">Contact</a>
+            </div>
+            <div class="nav-buttons">
+                <a href="/login" class="btn btn-outline">Sign In</a>
+                <a href="/signup" class="btn btn-primary">Get Started</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Simple, Transparent Pricing</h1>
+            <p>Choose the plan that's right for you. Start free, upgrade when you need more.</p>
+        </div>
+    </section>
+
+    <!-- Pricing Plans -->
+    <section class="pricing-section">
+        <div class="container">
+            <div class="pricing-grid">
+                <!-- Free Plan -->
+                <div class="pricing-card">
+                    <div class="plan-header">
+                        <h3>Free</h3>
+                        <div class="plan-price">
+                            <span class="price">$0</span>
+                            <span class="period">/month</span>
+                        </div>
+                        <p>Perfect for getting started</p>
+                    </div>
+                    <div class="plan-features">
+                        <ul>
+                            <li><i class="fas fa-check"></i> 1 Digital Business Card</li>
+                            <li><i class="fas fa-check"></i> Basic Templates</li>
+                            <li><i class="fas fa-check"></i> QR Code Sharing</li>
+                            <li><i class="fas fa-check"></i> Basic Analytics</li>
+                            <li><i class="fas fa-check"></i> Social Media Links</li>
+                            <li><i class="fas fa-check"></i> Mobile Responsive</li>
+                            <li><i class="fas fa-times"></i> Custom Branding</li>
+                            <li><i class="fas fa-times"></i> Advanced Analytics</li>
+                            <li><i class="fas fa-times"></i> Priority Support</li>
+                        </ul>
+                    </div>
+                    <div class="plan-action">
+                        <a href="/signup" class="btn btn-outline btn-full">Get Started Free</a>
+                    </div>
+                </div>
+
+                <!-- Pro Plan -->
+                <div class="pricing-card featured">
+                    <div class="plan-badge">Most Popular</div>
+                    <div class="plan-header">
+                        <h3>Pro</h3>
+                        <div class="plan-price">
+                            <span class="price">$9</span>
+                            <span class="period">/month</span>
+                        </div>
+                        <p>For professionals who want more</p>
+                    </div>
+                    <div class="plan-features">
+                        <ul>
+                            <li><i class="fas fa-check"></i> 5 Digital Business Cards</li>
+                            <li><i class="fas fa-check"></i> All Premium Templates</li>
+                            <li><i class="fas fa-check"></i> QR Code Sharing</li>
+                            <li><i class="fas fa-check"></i> Advanced Analytics</li>
+                            <li><i class="fas fa-check"></i> Unlimited Social Links</li>
+                            <li><i class="fas fa-check"></i> Custom Colors & Fonts</li>
+                            <li><i class="fas fa-check"></i> Remove JTCard Branding</li>
+                            <li><i class="fas fa-check"></i> Lead Capture Forms</li>
+                            <li><i class="fas fa-check"></i> Email Support</li>
+                        </ul>
+                    </div>
+                    <div class="plan-action">
+                        <a href="/signup?plan=pro" class="btn btn-primary btn-full">Start Pro Trial</a>
+                        <p class="trial-note">14-day free trial</p>
+                    </div>
+                </div>
+
+                <!-- Business Plan -->
+                <div class="pricing-card">
+                    <div class="plan-header">
+                        <h3>Business</h3>
+                        <div class="plan-price">
+                            <span class="price">$29</span>
+                            <span class="period">/month</span>
+                        </div>
+                        <p>For teams and organizations</p>
+                    </div>
+                    <div class="plan-features">
+                        <ul>
+                            <li><i class="fas fa-check"></i> Unlimited Business Cards</li>
+                            <li><i class="fas fa-check"></i> All Premium Templates</li>
+                            <li><i class="fas fa-check"></i> Team Management</li>
+                            <li><i class="fas fa-check"></i> Advanced Analytics Dashboard</li>
+                            <li><i class="fas fa-check"></i> Custom Domain</li>
+                            <li><i class="fas fa-check"></i> White Label Solution</li>
+                            <li><i class="fas fa-check"></i> API Access</li>
+                            <li><i class="fas fa-check"></i> CRM Integration</li>
+                            <li><i class="fas fa-check"></i> Priority Support</li>
+                        </ul>
+                    </div>
+                    <div class="plan-action">
+                        <a href="/signup?plan=business" class="btn btn-outline btn-full">Start Business Trial</a>
+                        <p class="trial-note">14-day free trial</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feature Comparison -->
+    <section class="comparison-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Feature Comparison</h2>
+                <p>See what's included in each plan</p>
+            </div>
+            
+            <div class="comparison-table">
+                <div class="comparison-header">
+                    <div class="feature-col">Features</div>
+                    <div class="plan-col">Free</div>
+                    <div class="plan-col">Pro</div>
+                    <div class="plan-col">Business</div>
+                </div>
+                
+                <div class="comparison-row">
+                    <div class="feature-col">Digital Business Cards</div>
+                    <div class="plan-col">1</div>
+                    <div class="plan-col">5</div>
+                    <div class="plan-col">Unlimited</div>
+                </div>
+                
+                <div class="comparison-row">
+                    <div class="feature-col">Templates</div>
+                    <div class="plan-col">Basic</div>
+                    <div class="plan-col">All Premium</div>
+                    <div class="plan-col">All Premium</div>
+                </div>
+                
+                <div class="comparison-row">
+                    <div class="feature-col">QR Code Sharing</div>
+                    <div class="plan-col"><i class="fas fa-check text-green"></i></div>
+                    <div class="plan-col"><i class="fas fa-check text-green"></i></div>
+                    <div class="plan-col"><i class="fas fa-check text-green"></i></div>
+                </div>
+                
+                <div class="comparison-row">
+                    <div class="feature-col">Analytics</div>
+                    <div class="plan-col">Basic</div>
+                    <div class="plan-col">Advanced</div>
+                    <div class="plan-col">Advanced Dashboard</div>
+                </div>
+                
+                <div class="comparison-row">
+                    <div class="feature-col">Custom Branding</div>
+                    <div class="plan-col"><i class="fas fa-times text-red"></i></div>
+                    <div class="plan-col"><i class="fas fa-check text-green"></i></div>
+                    <div class="plan-col"><i class="fas fa-check text-green"></i></div>
+                </div>
+                
+                <div class="comparison-row">
+                    <div class="feature-col">Team Management</div>
+                    <div class="plan-col"><i class="fas fa-times text-red"></i></div>
+                    <div class="plan-col"><i class="fas fa-times text-red"></i></div>
+                    <div class="plan-col"><i class="fas fa-check text-green"></i></div>
+                </div>
+                
+                <div class="comparison-row">
+                    <div class="feature-col">API Access</div>
+                    <div class="plan-col"><i class="fas fa-times text-red"></i></div>
+                    <div class="plan-col"><i class="fas fa-times text-red"></i></div>
+                    <div class="plan-col"><i class="fas fa-check text-green"></i></div>
+                </div>
+                
+                <div class="comparison-row">
+                    <div class="feature-col">Support</div>
+                    <div class="plan-col">Community</div>
+                    <div class="plan-col">Email</div>
+                    <div class="plan-col">Priority</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Frequently Asked Questions</h2>
+                <p>Everything you need to know about our pricing</p>
+            </div>
+            
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>Can I change plans anytime?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, you can upgrade or downgrade your plan at any time. Changes take effect immediately, and we'll prorate any billing differences.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>Is there a free trial for paid plans?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, both Pro and Business plans come with a 14-day free trial. No credit card required to start your trial.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>What payment methods do you accept?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We accept all major credit cards (Visa, MasterCard, American Express) and PayPal. All payments are processed securely.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>Can I cancel my subscription anytime?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, you can cancel your subscription at any time. Your account will remain active until the end of your current billing period.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>Do you offer discounts for annual billing?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, we offer a 20% discount when you choose annual billing. This applies to both Pro and Business plans.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>What happens to my data if I cancel?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Your data remains accessible for 30 days after cancellation. You can export your data or reactivate your account during this period.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Get Started?</h2>
+                <p>Join thousands of professionals using JTCard Platform</p>
+                <a href="/signup" class="btn btn-primary btn-large">
+                    <i class="fas fa-rocket"></i>
+                    Start Free Today
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-id-card"></i>
+                        <span>JTCard</span>
+                    </div>
+                    <p>Professional digital business cards for the modern world.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Platform</h4>
+                    <a href="/templates">Templates</a>
+                    <a href="/pricing">Pricing</a>
+                    <a href="/about">About</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <a href="/contact">Contact</a>
+                    <a href="/privacy-policy">Privacy Policy</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 JTCard Platform. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script>
+        // FAQ accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', function() {
+                const faqItem = this.parentElement;
+                const answer = faqItem.querySelector('.faq-answer');
+                const icon = this.querySelector('i');
+                
+                // Toggle active state
+                faqItem.classList.toggle('active');
+                
+                // Toggle icon
+                if (faqItem.classList.contains('active')) {
+                    icon.classList.remove('fa-chevron-down');
+                    icon.classList.add('fa-chevron-up');
+                } else {
+                    icon.classList.remove('fa-chevron-up');
+                    icon.classList.add('fa-chevron-down');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customize Card - JTCard Platform</title>
+    <meta name="description" content="Create and customize your digital business card with professional templates and features.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+</head>
+<body class="customize-page">
+    <!-- Navigation -->
+    <nav class="navbar dashboard-nav">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="/">
+                    <i class="fas fa-id-card"></i>
+                    <span>JTCard</span>
+                </a>
+            </div>
+            <div class="nav-menu">
+                <a href="/dashboard" class="nav-link">Dashboard</a>
+                <a href="/customize" class="nav-link active">Create Card</a>
+                <a href="/templates" class="nav-link">Templates</a>
+            </div>
+            <div class="nav-actions">
+                <button id="saveCard" class="btn btn-primary">
+                    <i class="fas fa-save"></i>
+                    Save Card
+                </button>
+                <a href="/dashboard" class="btn btn-outline">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to Dashboard
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Customize Content -->
+    <main class="customize-main">
+        <!-- Editor Sidebar -->
+        <aside class="customize-sidebar">
+            <div class="sidebar-header">
+                <h2>Customize Your Card</h2>
+                <p>Design your professional digital business card</p>
+            </div>
+
+            <div class="editor-tabs">
+                <button class="tab-button active" data-tab="basic">
+                    <i class="fas fa-user"></i>
+                    Basic Info
+                </button>
+                <button class="tab-button" data-tab="contact">
+                    <i class="fas fa-phone"></i>
+                    Contact
+                </button>
+                <button class="tab-button" data-tab="social">
+                    <i class="fas fa-share-alt"></i>
+                    Social Links
+                </button>
+                <button class="tab-button" data-tab="design">
+                    <i class="fas fa-palette"></i>
+                    Design
+                </button>
+            </div>
+
+            <!-- Basic Info Tab -->
+            <div class="tab-content active" id="basic-tab">
+                <div class="form-section">
+                    <h3>Personal Information</h3>
+                    
+                    <div class="form-group">
+                        <label for="cardTitle">Card Title</label>
+                        <input type="text" id="cardTitle" placeholder="My Business Card">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="fullName">Full Name</label>
+                        <input type="text" id="fullName" placeholder="John Doe">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="jobTitle">Job Title</label>
+                        <input type="text" id="jobTitle" placeholder="Senior Developer">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="company">Company</label>
+                        <input type="text" id="company" placeholder="Tech Company Inc.">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="bio">Bio</label>
+                        <textarea id="bio" rows="3" placeholder="Brief description about yourself..."></textarea>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3>Profile Images</h3>
+                    
+                    <div class="image-upload">
+                        <label for="profileImage">Profile Photo</label>
+                        <div class="upload-area" id="profileUpload">
+                            <div class="upload-placeholder">
+                                <i class="fas fa-camera"></i>
+                                <p>Click to upload profile photo</p>
+                                <span>JPG, PNG up to 5MB</span>
+                            </div>
+                            <input type="file" id="profileImage" accept="image/*" style="display: none;">
+                        </div>
+                    </div>
+                    
+                    <div class="image-upload">
+                        <label for="coverImage">Cover Photo</label>
+                        <div class="upload-area" id="coverUpload">
+                            <div class="upload-placeholder">
+                                <i class="fas fa-image"></i>
+                                <p>Click to upload cover photo</p>
+                                <span>JPG, PNG up to 5MB</span>
+                            </div>
+                            <input type="file" id="coverImage" accept="image/*" style="display: none;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Tab -->
+            <div class="tab-content" id="contact-tab">
+                <div class="form-section">
+                    <h3>Contact Information</h3>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" placeholder="john@company.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" placeholder="+1 (555) 123-4567">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="website">Website</label>
+                        <input type="url" id="website" placeholder="https://yourwebsite.com">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Social Links Tab -->
+            <div class="tab-content" id="social-tab">
+                <div class="form-section">
+                    <h3>Social Media Links</h3>
+                    <p>Add your social media profiles to help people connect with you</p>
+                    
+                    <div id="socialLinksContainer">
+                        <!-- Social links will be added here -->
+                    </div>
+                    
+                    <button type="button" class="btn btn-outline btn-full" onclick="addSocialLink()">
+                        <i class="fas fa-plus"></i>
+                        Add Social Link
+                    </button>
+                </div>
+            </div>
+
+            <!-- Design Tab -->
+            <div class="tab-content" id="design-tab">
+                <div class="form-section">
+                    <h3>Template Selection</h3>
+                    <p>Choose a template that matches your style</p>
+                    
+                    <div class="template-grid">
+                        <div class="template-option active" data-template="modern">
+                            <div class="template-preview modern-preview">
+                                <div class="preview-header"></div>
+                                <div class="preview-content"></div>
+                            </div>
+                            <span>Modern</span>
+                        </div>
+                        <div class="template-option" data-template="classic">
+                            <div class="template-preview classic-preview">
+                                <div class="preview-header"></div>
+                                <div class="preview-content"></div>
+                            </div>
+                            <span>Classic</span>
+                        </div>
+                        <div class="template-option" data-template="minimal">
+                            <div class="template-preview minimal-preview">
+                                <div class="preview-header"></div>
+                                <div class="preview-content"></div>
+                            </div>
+                            <span>Minimal</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Preview Area -->
+        <div class="customize-preview">
+            <div class="preview-header">
+                <h3>Live Preview</h3>
+                <div class="preview-actions">
+                    <button class="btn btn-outline btn-sm" onclick="previewCard()">
+                        <i class="fas fa-eye"></i>
+                        Preview
+                    </button>
+                    <button class="btn btn-outline btn-sm" onclick="generateQR()">
+                        <i class="fas fa-qrcode"></i>
+                        QR Code
+                    </button>
+                </div>
+            </div>
+            
+            <div class="card-preview-container">
+                <div id="cardPreview" class="business-card modern-template">
+                    <div class="card-cover">
+                        <div class="cover-image"></div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-profile">
+                            <div class="profile-image">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="profile-info">
+                                <h2 class="card-name">Your Name</h2>
+                                <p class="card-title">Your Job Title</p>
+                                <p class="card-company">Your Company</p>
+                            </div>
+                        </div>
+                        
+                        <div class="card-bio">
+                            <p>Your bio will appear here...</p>
+                        </div>
+                        
+                        <div class="card-contact">
+                            <div class="contact-item">
+                                <i class="fas fa-envelope"></i>
+                                <span>your@email.com</span>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-phone"></i>
+                                <span>+1 (555) 123-4567</span>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-globe"></i>
+                                <span>yourwebsite.com</span>
+                            </div>
+                        </div>
+                        
+                        <div class="card-social">
+                            <!-- Social links will appear here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay" style="display: none;">
+        <div class="loading-spinner">
+            <i class="fas fa-spinner fa-spin"></i>
+            <p>Saving your card...</p>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script>
+        let currentCard = {
+            title: '',
+            fullName: '',
+            jobTitle: '',
+            company: '',
+            email: '',
+            phone: '',
+            website: '',
+            bio: '',
+            profileImage: '',
+            coverImage: '',
+            templateId: 'modern',
+            socialLinks: []
+        };
+
+        let isEditing = false;
+        let editingCardId = null;
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeEditor();
+            setupEventListeners();
+            
+            // Check if editing existing card
+            const urlParams = new URLSearchParams(window.location.search);
+            const cardId = urlParams.get('id');
+            if (cardId) {
+                loadCardForEditing(cardId);
+            }
+        });
+
+        function initializeEditor() {
+            // Add initial social link
+            addSocialLink();
+            
+            // Update preview
+            updatePreview();
+        }
+
+        function setupEventListeners() {
+            // Tab switching
+            document.querySelectorAll('.tab-button').forEach(button => {
+                button.addEventListener('click', function() {
+                    switchTab(this.dataset.tab);
+                });
+            });
+
+            // Form inputs
+            document.querySelectorAll('input, textarea').forEach(input => {
+                input.addEventListener('input', function() {
+                    updateCardData();
+                    updatePreview();
+                });
+            });
+
+            // Template selection
+            document.querySelectorAll('.template-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    selectTemplate(this.dataset.template);
+                });
+            });
+
+            // File uploads
+            setupFileUploads();
+
+            // Save button
+            document.getElementById('saveCard').addEventListener('click', saveCard);
+        }
+
+        function switchTab(tabName) {
+            // Update tab buttons
+            document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+            document.querySelector(`[data-tab="${tabName}"]`).classList.add('active');
+
+            // Update tab content
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            document.getElementById(`${tabName}-tab`).classList.add('active');
+        }
+
+        function updateCardData() {
+            currentCard.title = document.getElementById('cardTitle').value;
+            currentCard.fullName = document.getElementById('fullName').value;
+            currentCard.jobTitle = document.getElementById('jobTitle').value;
+            currentCard.company = document.getElementById('company').value;
+            currentCard.email = document.getElementById('email').value;
+            currentCard.phone = document.getElementById('phone').value;
+            currentCard.website = document.getElementById('website').value;
+            currentCard.bio = document.getElementById('bio').value;
+
+            // Update social links
+            currentCard.socialLinks = [];
+            document.querySelectorAll('.social-link-item').forEach(item => {
+                const platform = item.querySelector('.social-platform').value;
+                const url = item.querySelector('.social-url').value;
+                if (platform && url) {
+                    currentCard.socialLinks.push({ platform, url });
+                }
+            });
+        }
+
+        function updatePreview() {
+            const preview = document.getElementById('cardPreview');
+            
+            // Update name
+            const nameEl = preview.querySelector('.card-name');
+            nameEl.textContent = currentCard.fullName || 'Your Name';
+            
+            // Update job title
+            const titleEl = preview.querySelector('.card-title');
+            titleEl.textContent = currentCard.jobTitle || 'Your Job Title';
+            
+            // Update company
+            const companyEl = preview.querySelector('.card-company');
+            companyEl.textContent = currentCard.company || 'Your Company';
+            
+            // Update bio
+            const bioEl = preview.querySelector('.card-bio p');
+            bioEl.textContent = currentCard.bio || 'Your bio will appear here...';
+            
+            // Update contact info
+            const contactItems = preview.querySelectorAll('.contact-item span');
+            contactItems[0].textContent = currentCard.email || 'your@email.com';
+            contactItems[1].textContent = currentCard.phone || '+1 (555) 123-4567';
+            contactItems[2].textContent = currentCard.website || 'yourwebsite.com';
+            
+            // Update social links
+            const socialContainer = preview.querySelector('.card-social');
+            socialContainer.innerHTML = currentCard.socialLinks.map(link => 
+                `<a href="${link.url}" target="_blank" class="social-link">
+                    <i class="fab fa-${getSocialIcon(link.platform)}"></i>
+                </a>`
+            ).join('');
+        }
+
+        function addSocialLink() {
+            const container = document.getElementById('socialLinksContainer');
+            const linkItem = document.createElement('div');
+            linkItem.className = 'social-link-item';
+            linkItem.innerHTML = `
+                <div class="form-row">
+                    <div class="form-group">
+                        <select class="social-platform">
+                            <option value="">Select Platform</option>
+                            <option value="linkedin">LinkedIn</option>
+                            <option value="twitter">Twitter</option>
+                            <option value="instagram">Instagram</option>
+                            <option value="facebook">Facebook</option>
+                            <option value="github">GitHub</option>
+                            <option value="youtube">YouTube</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input type="url" class="social-url" placeholder="Profile URL">
+                    </div>
+                    <button type="button" class="btn btn-outline btn-sm" onclick="removeSocialLink(this)">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            `;
+            
+            container.appendChild(linkItem);
+            
+            // Add event listeners
+            linkItem.querySelectorAll('select, input').forEach(input => {
+                input.addEventListener('input', function() {
+                    updateCardData();
+                    updatePreview();
+                });
+            });
+        }
+
+        function removeSocialLink(button) {
+            button.closest('.social-link-item').remove();
+            updateCardData();
+            updatePreview();
+        }
+
+        function selectTemplate(templateId) {
+            // Update template selection
+            document.querySelectorAll('.template-option').forEach(option => option.classList.remove('active'));
+            document.querySelector(`[data-template="${templateId}"]`).classList.add('active');
+            
+            // Update card template
+            currentCard.templateId = templateId;
+            const preview = document.getElementById('cardPreview');
+            preview.className = `business-card ${templateId}-template`;
+        }
+
+        function setupFileUploads() {
+            // Profile image upload
+            document.getElementById('profileUpload').addEventListener('click', function() {
+                document.getElementById('profileImage').click();
+            });
+            
+            document.getElementById('profileImage').addEventListener('change', function(e) {
+                handleImageUpload(e, 'profile');
+            });
+            
+            // Cover image upload
+            document.getElementById('coverUpload').addEventListener('click', function() {
+                document.getElementById('coverImage').click();
+            });
+            
+            document.getElementById('coverImage').addEventListener('change', function(e) {
+                handleImageUpload(e, 'cover');
+            });
+        }
+
+        function handleImageUpload(event, type) {
+            const file = event.target.files[0];
+            if (!file) return;
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const imageUrl = e.target.result;
+                
+                if (type === 'profile') {
+                    currentCard.profileImage = imageUrl;
+                    const profileImg = document.querySelector('.profile-image');
+                    profileImg.innerHTML = `<img src="${imageUrl}" alt="Profile">`;
+                } else if (type === 'cover') {
+                    currentCard.coverImage = imageUrl;
+                    const coverImg = document.querySelector('.cover-image');
+                    coverImg.style.backgroundImage = `url(${imageUrl})`;
+                }
+            };
+            reader.readAsDataURL(file);
+        }
+
+        async function saveCard() {
+            updateCardData();
+            
+            if (!currentCard.title) {
+                showNotification('Please enter a card title', 'error');
+                return;
+            }
+            
+            document.getElementById('loadingOverlay').style.display = 'flex';
+            
+            try {
+                const url = isEditing ? `/api/cards/${editingCardId}` : '/api/cards';
+                const method = isEditing ? 'PUT' : 'POST';
+                
+                const response = await fetch(url, {
+                    method: method,
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(currentCard)
+                });
+                
+                const result = await response.json();
+                
+                if (response.ok) {
+                    showNotification('Card saved successfully!', 'success');
+                    setTimeout(() => {
+                        window.location.href = '/dashboard';
+                    }, 1500);
+                } else {
+                    showNotification(result.error || 'Failed to save card', 'error');
+                }
+            } catch (error) {
+                showNotification('Network error. Please try again.', 'error');
+            } finally {
+                document.getElementById('loadingOverlay').style.display = 'none';
+            }
+        }
+
+        async function loadCardForEditing(cardId) {
+            try {
+                const response = await fetch('/api/cards');
+                if (response.ok) {
+                    const data = await response.json();
+                    const card = data.cards.find(c => c.id == cardId);
+                    
+                    if (card) {
+                        isEditing = true;
+                        editingCardId = cardId;
+                        
+                        // Populate form fields
+                        document.getElementById('cardTitle').value = card.title || '';
+                        document.getElementById('fullName').value = card.fullName || '';
+                        document.getElementById('jobTitle').value = card.jobTitle || '';
+                        document.getElementById('company').value = card.company || '';
+                        document.getElementById('email').value = card.email || '';
+                        document.getElementById('phone').value = card.phone || '';
+                        document.getElementById('website').value = card.website || '';
+                        document.getElementById('bio').value = card.bio || '';
+                        
+                        // Set template
+                        selectTemplate(card.templateId || 'modern');
+                        
+                        // Load social links
+                        document.getElementById('socialLinksContainer').innerHTML = '';
+                        if (card.socialLinks && card.socialLinks.length > 0) {
+                            card.socialLinks.forEach(link => {
+                                addSocialLink();
+                                const lastItem = document.querySelector('.social-link-item:last-child');
+                                lastItem.querySelector('.social-platform').value = link.platform;
+                                lastItem.querySelector('.social-url').value = link.url;
+                            });
+                        } else {
+                            addSocialLink();
+                        }
+                        
+                        updateCardData();
+                        updatePreview();
+                    }
+                }
+            } catch (error) {
+                showNotification('Failed to load card data', 'error');
+            }
+        }
+
+        function getSocialIcon(platform) {
+            const icons = {
+                linkedin: 'linkedin',
+                twitter: 'twitter',
+                instagram: 'instagram',
+                facebook: 'facebook',
+                github: 'github',
+                youtube: 'youtube'
+            };
+            return icons[platform] || 'link';
+        }
+
+        function previewCard() {
+            // Open preview in new tab
+            if (isEditing) {
+                window.open(`/card/${editingCardId}`, '_blank');
+            } else {
+                showNotification('Please save the card first to preview', 'info');
+            }
+        }
+
+        function generateQR() {
+            if (isEditing) {
+                // Generate QR code for existing card
+                const url = `${window.location.origin}/card/${editingCardId}`;
+                showNotification('QR code will be available after saving', 'info');
+            } else {
+                showNotification('Please save the card first to generate QR code', 'info');
+            }
+        }
+
+        // Notification function
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = `notification notification-${type}`;
+            notification.innerHTML = `
+                <i class="fas fa-${type === 'error' ? 'exclamation-circle' : 'check-circle'}"></i>
+                <span>${message}</span>
+                <button onclick="this.parentElement.remove()">
+                    <i class="fas fa-times"></i>
+                </button>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Auto remove after 5 seconds
+            setTimeout(() => {
+                if (notification.parentElement) {
+                    notification.remove();
+                }
+            }, 5000);
+        }
+    </script>
+</body>
+</html>
