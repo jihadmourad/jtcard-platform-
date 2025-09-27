@@ -15,6 +15,8 @@ import qrcode
 from io import BytesIO
 import base64
 from dotenv import load_dotenv
+import sqlite3
+
 
 # Load environment variables
 load_dotenv()
